@@ -1,0 +1,48 @@
+- name: software | packages | install packages
+  package:
+    name:
+      - software-properties-common
+      - htop
+      - neofetch
+      - ncdu
+      - wget
+      - curl
+      - ripgrep
+      - tmux
+      - zip
+      - unzip
+      - feh
+      - xkeycaps
+      - autokey-gtk
+      - nmap
+      - snapd
+      - gcc
+      - gnome-tweaks
+      - make
+      - build-essential
+      - libssl-dev
+      - libghc-zlib-dev
+      - libcurl4-gnutls-dev
+      - libexpat1-dev
+      - libffi-dev
+      - gettext
+      - git
+      - apt-transport-https
+      - ca-certificates
+      - gnupg2
+    state: latest
+
+- name: software | packages | install/update core snap
+  snap:
+    name:  core
+    state: present
+
+- name: software | packages | install nala
+  package:
+    name: nala
+    state: latest
+
+- name: software | packages | update cache for nala
+  apt:
+    update_cache: yes
+  changed_when: False

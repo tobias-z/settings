@@ -1,0 +1,10 @@
+- name: software | golang | remove old golang
+  file:
+    path: /usr/local/go
+    state: absent
+
+- name: Unarchive a file that needs to be downloaded (added in 2.0)
+  ansible.builtin.unarchive:
+    src: go1.19.4.linux-amd64.tar.gz
+    dest: /usr/local
+    remote_src: yes

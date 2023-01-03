@@ -1,0 +1,10 @@
+# Peek for gif generation
+- name: software | peek | add peek-developers repository
+  apt_repository:
+    repo: 'ppa:peek-developers/stable'
+    codename: trusty
+
+- name: software | peek | install peek
+  package:
+    name: peek
+    state: latest

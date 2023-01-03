@@ -1,0 +1,12 @@
+- name: software | python | add deadsnakes repository
+  apt_repository:
+    repo: 'ppa:deadsnakes/ppa'
+    codename: trusty
+
+- name: software | python | install python
+  package:
+    name:
+      - python3
+      - python3-pip
+      - python3-venv
+    state: latest

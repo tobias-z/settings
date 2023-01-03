@@ -1,0 +1,4 @@
+- name: software | discord | install/update discord snap
+  snap:
+    name:  discord
+    state: present

@@ -1,0 +1,5 @@
+- name: software | code | install/update code snap
+  snap:
+    name:  code
+    state: present
+    classic: true

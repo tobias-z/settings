@@ -1,0 +1,18 @@
+- name: software | fzf | check if fzf exists
+  shell: command -v fzf
+  register: fzf_exists
+  ignore_errors: yes
+
+- name: software | fzf | clone fzf
+  when: fzf_exists is failed
+  git:
+    repo: https://github.com/junegunn/fzf.git
+    dest: /home/tobiasz/.fzf
+    clone: yes
+    update: yes
+    depth: 1
+
+- name: software | fzf | install fzf
+  when: fzf_exists is failed
+  ansible.builtin.shell: /home/tobiasz/.fzf/install --all
+

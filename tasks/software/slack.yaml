@@ -1,0 +1,5 @@
+- name: software | slack | install/update slack snap
+  snap:
+    name:  slack
+    state: present
+    classic: true

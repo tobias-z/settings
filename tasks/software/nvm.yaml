@@ -1,0 +1,22 @@
+- name: software | nvm | check if nvm exists
+  shell: command -v nvm
+  register: nvm_exists
+  ignore_errors: yes
+
+- name: software | nvm | download installer
+  when: nvm_exists is failed
+  get_url:
+    url: https://raw.githubusercontent.com/creationix/nvm/master/install.sh
+    dest: /tmp/nvm_install.sh
+    mode: '0755'
+    force: 'yes'
+  tags:
+    - nvm
+
+- name: software | nvm | install sdkman
+  when: nvm_exists is failed
+  shell: /tmp/nvm_install.sh
+  args:
+    executable: /bin/bash
+  tags:
+    - nvm

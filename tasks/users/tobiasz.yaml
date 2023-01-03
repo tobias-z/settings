@@ -1,0 +1,39 @@
+- name: users | tobiasz | remove preinstalled clutter from home directory
+  file:
+    path: /home/tobiasz/{{ item }}
+    state: absent
+  with_items:
+    - examples.desktop
+    - Desktop
+    - Documents
+    - Downloads
+    - Music
+    - Pictures
+    - Public
+    - Templates
+    - Videos
+
+- name: users | tobiasz | create personal config directories
+  tags: dotfiles,dotfiles-tobiasz
+  file:
+    path: /home/tobiasz/{{ item.dir }}
+    state: directory
+    owner: tobiasz
+    group: tobiasz
+    mode: 0700
+  with_items:
+    - { dir: .config }
+    - { dir: .config/autostart }
+    - { dir: .config/gtk-3.0 }
+    - { dir: .local }
+    - { dir: .local/bin }
+    - { dir: .local/share }
+    - { dir: .local/share/applications }
+    - { dir: bin }
+    - { dir: desktop }
+    - { dir: documents }
+    - { dir: downloads }
+    - { dir: dev }
+    - { dir: dev/plugins }
+    - { dir: dev/projects }
+    - { dir: dev/devops }

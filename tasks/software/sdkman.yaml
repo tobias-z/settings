@@ -1,0 +1,22 @@
+- name: software | sdkman | check if sdkman exists
+  shell: command -v sdk
+  register: sdkman_exists
+  ignore_errors: yes
+
+- name: software | sdkman | download installer
+  when: sdkman_exists is failed
+  get_url:
+    url: https://get.sdkman.io
+    dest: /tmp/get.sdkman.io
+    mode: '0755'
+    force: 'yes'
+  tags:
+    - sdkman
+
+- name: software | sdkman | install sdkman
+  when: sdkman_exists is failed
+  shell: /tmp/get.sdkman.io
+  args:
+    executable: /bin/bash
+  tags:
+    - sdkman

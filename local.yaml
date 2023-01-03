@@ -1,9 +1,10 @@
----
-- hosts: localhost
-  connection: local
+- hosts: all
+  tags: always
   become: true
-
+  pre_tasks:
+    - name: pre-run | update package cache (debian, etc)
+      tags: always
+      apt: update_cache=yes
+      changed_when: False
   tasks:
-    - name: Install htop
-      package:
-        name: htop
+    - import_tasks:
