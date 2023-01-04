@@ -1,0 +1,8 @@
+- name: software | nvm | check if lazydocker exists
+  shell: command -v lazydocker
+  register: lazydocker_exists
+  ignore_errors: yes
+
+- name: software | lazydocker | install lazydocker
+  when: lazydocker_exists is failed
+  shell: go get github.com/jesseduffield/lazydocker

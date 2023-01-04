@@ -1,0 +1,4 @@
+- name: software | thunderbird | install thunderbird
+  package:
+    name: thunderbird
+    state: latest

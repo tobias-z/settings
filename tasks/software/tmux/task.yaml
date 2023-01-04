@@ -1,0 +1,17 @@
+- name: software | tmux | install tmux
+  become: true
+  package:
+    name: tmux
+    state: latest
+
+- name: software | tmux | copy tmux config
+  copy:
+    src: {{ item.src }}
+    dest: {{ item.dest }}
+    owner: tobiasz
+    group: tobiasz
+  with_items:
+    - { src: '{{ playbook_dir }}/tasks/software/tmux/tmux.conf', dest: '/home/tobiasz/.tmux.conf' }
+    - { src: '{{ playbook_dir }}/tasks/software/tmux/tmux-cht.sh', dest: '/home/tobiasz/.local/bin' }
+    - { src: '{{ playbook_dir }}/tasks/software/tmux/tmux-cht-command', dest: '/home/tobiasz/.config/tmux' }
+    - { src: '{{ playbook_dir }}/tasks/software/tmux/tmux-cht-languages', dest: '/home/tobiasz/.config/tmux' }

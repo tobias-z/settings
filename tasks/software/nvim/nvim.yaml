@@ -1,0 +1,43 @@
+- name: software | nvim | install prerequisites
+  package:
+    name:
+      - ninja-build
+      - gettext
+      - libtool
+      - libtool-bin
+      - autoconf
+      - automake
+      - cmake
+      - g++
+      - pkg-config
+      - unzip
+      - curl
+      - doxygen
+    state: latest
+
+- name: software | nvim | check if nvim exists
+  shell: command -v nvim
+  register: nvim_exists
+  ignore_errors: yes
+
+- name: software | nvim | clone nvim
+  when: nvim_exists is failed
+  git:
+    repo: git clone https://github.com/neovim/neovim
+    dest: /home/tobiasz/dev/projects/neovim
+    clone: yes
+    update: yes
+
+- name: software | nvim | build nvim
+  when: nvim_exists is failed
+  shell: |
+    cd /home/tobiasz/dev/projects/neovim
+    make CMAKE_BUILD_TYPE=RelWithDebInfo
+    sudo make install
+    
+- name: software | nvim | copy nvim config
+  copy:
+    src: {{ playbook_dir }}/tasks/software/nvim/nvim-config
+    dest: /home/tobiasz/.config/nvim
+    owner: tobiasz
+    group: tobiasz

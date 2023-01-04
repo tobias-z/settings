@@ -1,18 +1,3 @@
-- name: users | tobiasz | remove preinstalled clutter from home directory
-  file:
-    path: /home/tobiasz/{{ item }}
-    state: absent
-  with_items:
-    - examples.desktop
-    - Desktop
-    - Documents
-    - Downloads
-    - Music
-    - Pictures
-    - Public
-    - Templates
-    - Videos
-
 - name: users | tobiasz | create personal config directories
   tags: dotfiles,dotfiles-tobiasz
   file:
@@ -30,9 +15,6 @@
     - { dir: .local/share }
     - { dir: .local/share/applications }
     - { dir: bin }
-    - { dir: desktop }
-    - { dir: documents }
-    - { dir: downloads }
     - { dir: dev }
     - { dir: dev/plugins }
     - { dir: dev/projects }

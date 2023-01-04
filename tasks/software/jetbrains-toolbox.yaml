@@ -1,0 +1,22 @@
+- name: software | jetbrains-toolbox | check if jetbrains-toolbox
+  shell: command -v jetbrains-toolbox
+  register: toolbox_exists
+  ignore_errors: yes
+
+- name: software | jetbrains-toolbox | download installer
+  when: toolbox_exists is failed
+  get_url:
+    url: https://raw.githubusercontent.com/nagygergo/jetbrains-toolbox-install/master/jetbrains-toolbox.sh
+    dest: /tmp/jetbrains-toolbox.sh
+    mode: '0755'
+    force: 'yes'
+  tags:
+    - toolbox
+
+- name: software | jetbrains-toolbox | install jetbrains-toolbox
+  when: toolbox_exists is failed
+  shell: /tmp/jetbrains-toolbox.sh
+  args:
+    executable: /bin/bash
+  tags:
+    - toolbox

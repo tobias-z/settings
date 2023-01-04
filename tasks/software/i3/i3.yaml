@@ -1,0 +1,35 @@
+- name: software | i3 | check if i3 exists
+  shell: command -v i3
+  register: i3_exists
+  ignore_errors: yes
+
+- name: software | i3 | install i3
+  when: i3_exists is failed
+  shell: |
+    /usr/lib/apt/apt-helper download-file https://debian.sur5r.net/i3/pool/main/s/sur5r-keyring/sur5r-keyring_2022.02.17_all.deb keyring.deb SHA256:52053550c4ecb4e97c48900c61b2df4ec50728249d054190e8a0925addb12fc6
+    dpkg -i ./keyring.deb
+    echo "deb http://debian.sur5r.net/i3/ $(grep '^DISTRIB_CODENAME=' /etc/lsb-release | cut -f2 -d=) universe" >> /etc/apt/sources.list.d/sur5r-i3.list
+    apt update
+
+- name: software | i3 | install i3
+  package:
+    name: i3
+    state: latest
+
+- name: software | i3 | ensure i3 directory
+  file:
+    path: /home/tobiasz/.config/i3
+    state: directory
+    owner: tobiasz
+    group: tobiasz
+    mode: 0700
+
+- name: software | i3 | copy i3 config
+  copy:
+    src: {{ item.src }}
+    dest: {{ item.dest }}
+    owner: tobiasz
+    group: tobiasz
+  with_items:
+    - { src: '{{ playbook_dir }}/tasks/software/i3/i3-config', dest: '/home/tobiasz/.config/i3/config' }
+    - { src: '{{ playbook_dir }}/tasks/software/i3/i3-status-config', dest: '/home/tobiasz/.config/i3status/config' }

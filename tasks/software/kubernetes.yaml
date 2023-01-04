@@ -1,0 +1,24 @@
+- name: software | kubernetes | install kubectl
+  package:
+    name: kubectl
+    state: latest
+
+- name: software | kubernetes | install/update helm snap
+  snap:
+    name:  helm
+    state: present
+    classic: true
+
+- name: software | kubernetes | check if minikube exists
+  shell: command -v sdk
+  register: minikube_exists
+  ignore_errors: yes
+
+- name: software | kubernetes | install minikube
+  when: minikube_exists is failed
+  get_url:
+    url: https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+    dest: /usr/local/bin/minikube
+    mode: '0755'
+    force: 'yes'
+

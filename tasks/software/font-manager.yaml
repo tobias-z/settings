@@ -1,0 +1,9 @@
+- name: software | font-manager | add font-manager repository
+  apt_repository:
+    repo: 'ppa:font-manager/staging'
+    codename: trusty
+
+- name: software | font-manager | install font-manager
+  package:
+    name: font-manager
+    state: latest

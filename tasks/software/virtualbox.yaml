@@ -1,0 +1,6 @@
+- name: software | virtualbox | install virtualbox
+  package:
+    name:
+      - virtualbox
+      - virtual-ext-pack
+    state: latest

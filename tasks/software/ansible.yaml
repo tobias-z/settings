@@ -1,0 +1,4 @@
+- name: software | ansible | install ansible
+  package:
+    name: ansible
+    state: latest

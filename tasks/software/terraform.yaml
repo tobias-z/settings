@@ -1,0 +1,4 @@
+- name: software | terraform | install terraform
+  package:
+    name: terraform
+    state: latest

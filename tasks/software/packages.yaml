@@ -2,16 +2,15 @@
   package:
     name:
       - software-properties-common
+      - glances
       - htop
       - neofetch
       - ncdu
       - wget
       - curl
       - ripgrep
-      - tmux
       - zip
       - unzip
-      - feh
       - xkeycaps
       - autokey-gtk
       - nmap
@@ -30,6 +29,7 @@
       - apt-transport-https
       - ca-certificates
       - gnupg2
+      - vim
     state: latest
 
 - name: software | packages | install/update core snap

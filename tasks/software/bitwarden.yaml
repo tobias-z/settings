@@ -1,0 +1,4 @@
+- name: software | bitwarden | install/update bitwarden snap
+  snap:
+    name:  bitwarden
+    state: present

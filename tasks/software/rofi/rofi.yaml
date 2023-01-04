@@ -1,0 +1,26 @@
+- name: software | rofi | install rofi
+  package:
+    name: rofi
+    state: latest
+
+- name: software | rofi | ensure rofi directories
+  file:
+    path: /home/tobiasz/{{ item.dir }}
+    state: directory
+    owner: tobiasz
+    group: tobiasz
+    mode: 0700
+  with_items:
+    - { dir: .config/rofi }
+    - { dir: .config/rofi/themes }
+
+- name: software | rofi | copy rofi config
+  copy:
+    src: {{ item.src }}
+    dest: {{ item.dest }}
+    owner: tobiasz
+    group: tobiasz
+  with_items:
+    - { src: '{{ playbook_dir }}/tasks/software/rofi/rofi-config.rasi', dest: '/home/tobiasz/.config/rofi/config.rasi' }
+    - { src: '{{ playbook_dir }}/tasks/software/rofi/rofi-launcher.sh', dest: '/home/tobiasz/.local/bin/rofi-launcher.sh' }
+    - { src: '{{ playbook_dir }}/tasks/software/rofi/rofi-theme.sh', dest: '/home/tobiasz/.config/rofi/themes/my-theme.rasi' }

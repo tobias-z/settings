@@ -1,0 +1,16 @@
+- name: software | wallpaper | install wallpaper tools
+  package:
+    name:
+      - nitrogen
+      - catimg
+      - feh
+    state: latest
+
+- name: software | wallpaper | copy wall paper tools
+  copy:
+    src: {{ item.src }}
+    dest: {{ item.dest }}
+    owner: tobiasz
+    group: tobiasz
+  with_items:
+    - { src: '{{ playbook_dir }}/tasks/software/wallpaper/set-wallpaper', dest: '/home/tobiasz/.local/bin/set-wallpaper' }

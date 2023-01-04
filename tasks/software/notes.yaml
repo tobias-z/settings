@@ -1,0 +1,21 @@
+- name: software | notes | check if notes
+  shell: command -v notes
+  register: notes_exists
+  ignore_errors: yes
+
+- name: software | notes | clone notes
+  when: notes_exists is failed
+  git:
+    repo: git@github.com:tobias-z/my-notes.git
+    dest: /home/tobiasz/Documents/my-notes
+    clone: yes
+    update: yes
+
+- name: software | polybar | make launch script executable
+  file:
+    dest: /home/tobiasz/Documents/my-notes/bin/{{ item.src }}
+    mode: a+x
+  with_items:
+    - { src: 'notes' }
+    - { src: 'notes-compile' }
+

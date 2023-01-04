@@ -1,0 +1,4 @@
+- name: software | zathura | install zathura
+  package:
+    name: zathura
+    state: latest
