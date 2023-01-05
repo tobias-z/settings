@@ -10,13 +10,22 @@
     dest: /tmp/nvm_install.sh
     mode: '0755'
     force: 'yes'
-  tags:
-    - nvm
 
 - name: software | nvm | install sdkman
   when: nvm_exists is failed
-  shell: /tmp/nvm_install.sh
+  shell: |
+    /bin/bash /tmp/nvm_install.sh
+    source /home/tobiasz/.bashrc
   args:
     executable: /bin/bash
-  tags:
-    - nvm
+
+- name: software | nvm | install node
+  when: nvm_exists is failed
+  shell: |
+    nvm install 16
+
+- name: software | nvm | ensure npm packages
+  shell: |
+    npm install -g yarn
+    npm install -g prettier
+    npm install -g eslint

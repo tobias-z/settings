@@ -5,6 +5,6 @@
 
 - name: software | golang | install golang
   ansible.builtin.unarchive:
-    src: go1.19.4.linux-amd64.tar.gz
+    src: https://go.dev/dl/go1.19.4.linux-amd64.tar.gz
     dest: /usr/local
     remote_src: yes

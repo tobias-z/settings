@@ -1,0 +1,6 @@
+- name: software | latex | install latex
+  package:
+    name:
+      - texlive-full
+      - pandoc
+    state: latest

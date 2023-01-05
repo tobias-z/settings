@@ -41,3 +41,39 @@
     dest: /home/tobiasz/.config/nvim
     owner: tobiasz
     group: tobiasz
+
+- name: software | nvim | ensure directories used for neovim
+  file:
+    path: {{ item.dir }}
+    state: directory
+  with_items:
+    { dir: /home/tobiasz/.local/share/debuggers }
+    { dir: /home/tobiasz/.local/share/jdtls }
+    { dir: /home/tobiasz/.local/share/jdtls/workspaces }
+
+- name: software | nvim | clone java-debug debugger
+  git:
+    repo: https://github.com/microsoft/java-debug
+    dest: /home/tobiasz/.local/share/debuggers/java-debug
+    clone: yes
+    update: yes
+
+- name: software | nvim | install java-debug debugger
+  ansible.builtin.shell: ./mvnw clean install
+  args:
+    chdir: /home/tobiasz/.local/share/debuggers/java-debug
+
+- name: software | nvim | clone vscode-java-test debugger
+  git:
+    repo: https://github.com/microsoft/vscode-java-test
+    dest: /home/tobiasz/.local/share/debuggers/vscode-java-test
+    clone: yes
+    update: yes
+
+- name: software | nvim | install vscode-java-test debugger
+  ansible.builtin.shell: |
+    npm install
+    npm run build-plugin
+  args:
+    chdir: /home/tobiasz/.local/share/debuggers/vscode-java-test
+

@@ -10,13 +10,43 @@
     dest: /tmp/get.sdkman.io
     mode: '0755'
     force: 'yes'
-  tags:
-    - sdkman
 
 - name: software | sdkman | install sdkman
   when: sdkman_exists is failed
   shell: /tmp/get.sdkman.io
   args:
     executable: /bin/bash
-  tags:
-    - sdkman
+
+- name: software | sdkman | ensure sdkman config
+  copy:
+    dest: /home/tobiasz/.sdkman/etc/config
+    content: |
+      sdkman_auto_answer=true
+      sdkman_auto_complete=true
+      sdkman_auto_env=false
+      sdkman_auto_update=true
+      sdkman_beta_channel=false
+      sdkman_checksum_enable=true
+      sdkman_colour_enable=true
+      sdkman_curl_connect_timeout=7
+      sdkman_curl_max_time=10
+      sdkman_debug_mode=false
+      sdkman_insecure_ssl=false
+      sdkman_rosetta2_compatible=false
+      sdkman_selfupdate_feature=true
+
+- name: software | sdkman | source sdkman
+  when: sdkman_exists is failed
+  shell: source "$HOME/.sdkman/bin/sdkman-init.sh"
+  args:
+    executable: /bin/bash
+
+- name: software | sdkman | install packages
+  when: sdkman_exists is failed
+  shell: |
+    sdk install java 17.0.4-amzn
+    sdk install java 8.0.342-amzn
+    sdk install java 11.0.16-amzn
+    sdk default java 17.0.4-amzn
+    sdk install maven 3.8.7
+    sdk install gradle 7.6

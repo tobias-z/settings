@@ -3,13 +3,13 @@ local dap = require("dap")
 dap.adapters.node2 = {
   type = "executable",
   command = "node",
-  args = { os.getenv("HOME") .. "/config/neovim/debuggers/vscode-node-debug2/out/src/nodeDebug.js" },
+  args = { os.getenv("HOME") .. "/.local/share/debuggers/vscode-node-debug2/out/src/nodeDebug.js" },
 }
 
 dap.adapters.chrome = {
   type = "executable",
   command = "node",
-  args = { os.getenv("HOME") .. "/config/neovim/debuggers/vscode-chrome-debug/out/src/chromeDebug.js" },
+  args = { os.getenv("HOME") .. "/.local/share/debuggers/vscode-chrome-debug/out/src/chromeDebug.js" },
 }
 
 dap.configurations.javascript = {

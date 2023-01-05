@@ -1,0 +1,12 @@
+- name: software | themes | install themes
+  package:
+    name:
+      - yaru-theme-icon
+      - yaru-theme-gtk
+    state: latest
+
+- name: software | themes | install nordic gtk theme
+  ansible.builtin.unarchive:
+    src: https://github.com/EliverLara/Nordic/releases/download/v2.2.0/Nordic-darker-standard-buttons.tar.xz
+    dest: /usr/share/themes
+    remote_src: yes
