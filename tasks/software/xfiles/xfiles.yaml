@@ -1,0 +1,9 @@
+- name: software | xfiles | ensure xfiles
+  copy:
+    src: "{{ playbook_dir }}/tasks/software/xfiles/{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: tobiasz
+    group: tobiasz
+  with_items:
+    - { src: 'xinitrc', dest: '/home/{{ ansible_user }}/.xinitrc' }
+    - { src: 'Xmodmap', dest: '/home/{{ ansible_user }}/.Xmodmap' }

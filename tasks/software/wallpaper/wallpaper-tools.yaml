@@ -8,9 +8,22 @@
 
 - name: software | wallpaper | copy wall paper tools
   copy:
-    src: {{ item.src }}
-    dest: {{ item.dest }}
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
     owner: tobiasz
     group: tobiasz
   with_items:
     - { src: '{{ playbook_dir }}/tasks/software/wallpaper/set-wallpaper', dest: '/home/tobiasz/.local/bin/set-wallpaper' }
+
+- name: software | wallpaper | copy wall papers
+  copy:
+    src: "{{ playbook_dir }}/tasks/software/wallpaper/wallpapers/{{ item.name }}"
+    dest: "/home/{{ ansible_user }}/Pictures/wallpapers/{{ item.name }}"
+    owner: tobiasz
+    group: tobiasz
+  with_items:
+    - { src: 'blank-black.jpg' }
+    - { src: 'house.png' }
+    - { src: 'nord-mountains.jpg' }
+    - { src: 'park.png' }
+    - { src: 'rustlang.png' }

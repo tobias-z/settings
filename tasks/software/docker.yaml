@@ -20,7 +20,7 @@
 
 - name: software | docker | install docker
   apt:
-    name: {{ item }}
+    name: "{{ item }}"
     state: latest
     update_cache: yes
   loop:
@@ -42,7 +42,7 @@
 
 - name: software | docker | adding user to docker group
   user:
-    name: tobiasz
+    name: "{{ ansible_user }}"
     groups: docker
     append: yes
 

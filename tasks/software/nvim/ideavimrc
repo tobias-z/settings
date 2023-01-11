@@ -1,0 +1,89 @@
+let mapleader = " "
+nnoremap <leader><cr> :action IdeaVim.ReloadVimRc.reload<CR>
+
+set sneak
+set relativenumber 0
+set number
+set surround
+set scrolloff=10
+set visualbell
+set noerrorbells
+set incsearch
+set highlightedyank
+set ignorecase
+
+imap jk <Esc>
+map <C-h> <C-/>
+:map <Tab> >
+:imap <Tab> <Esc> >
+:vmap <Tab> >gv
+:map <S-Tab> <
+:imap <S-Tab> <Esc> <
+:vmap <S-Tab> <gv
+
+nnoremap <leader>z :action ToggleDistractionFreeMode<CR>
+nnoremap gt :action GotoTest<CR>
+nnoremap gi :action GotoImplementation<CR>
+nnoremap gd :action GotoDeclaration<CR>
+
+" Dont like this but i have to :(
+map <C-O> :action Back<CR>
+map <C-I> :action Forward<CR>
+
+" I think this can be changed to a new harpoon plugin?
+nnoremap <leader>e :action ShowBookmarks<CR>
+nnoremap <leader>1 :action GotoBookmark1<CR>
+nnoremap <leader>a1 :action ToggleBookmark1<CR>
+nnoremap <leader>2 :action GotoBookmark2<CR>
+nnoremap <leader>a2 :action ToggleBookmark2<CR>
+nnoremap <leader>3 :action GotoBookmark3<CR>
+nnoremap <leader>a3 :action ToggleBookmark3<CR>
+nnoremap <leader>4 :action GotoBookmark4<CR>
+nnoremap <leader>a4 :action ToggleBookmark4<CR>
+nnoremap <leader>5 :action GotoBookmark5<CR>
+nnoremap <leader>a5 :action ToggleBookmark5<CR>
+nnoremap <leader>m :action FileStructurePopup<CR>
+
+nnoremap <leader>gb :action Git.Branches<CR>
+nnoremap <leader>gd :action Git.CompareWithBranch<CR>
+
+nnoremap <leader>t :action RerunFailedTests<CR>
+
+nnoremap <leader>f :action ChooseRunConfiguration<CR>
+nnoremap <leader>c :action ContextRun<CR>
+nnoremap <leader>d :action ToggleLineBreakpoint<CR>
+
+nnoremap <leader>l :wincmd l<CR>
+nnoremap <leader>h :wincmd h<CR>
+nnoremap <leader>k :wincmd k<CR>
+nnoremap <leader>j :wincmd j<CR>
+
+map <leader>sv :action SurroundWith<CR>
+map <leader>il :action Inline<CR>
+nnoremap <leader>l :action NextSplitter<CR>
+
+map <leader>gc :action ActivateCommitToolWindow<CR>
+
+map <leader>td :action ActivateTODOToolWindow<CR>
+
+nmap Y y$
+
+sethandler <S-Tab> a:vim
+sethandler <Tab> a:vim
+sethandler <C-H> a:ide
+sethandler <C-I> a:vim
+sethandler <C-J> a:ide
+sethandler <C-K> a:ide
+sethandler <C-L> a:vim
+sethandler <C-F> a:ide
+sethandler <C-O> a:vim
+sethandler <C-R> a:ide
+sethandler <C-S> a:vim
+sethandler <C-E> a:ide
+sethandler <C-V> a:ide
+sethandler <C-S> a:ide
+sethandler <C-A> a:ide
+sethandler <C-C> a:vim
+sethandler <C-W> a:vim
+sethandler <C-B> a:ide
+sethandler <C-P> a:ide

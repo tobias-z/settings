@@ -37,14 +37,14 @@
     
 - name: software | nvim | copy nvim config
   copy:
-    src: {{ playbook_dir }}/tasks/software/nvim/nvim-config
+    src: "{{ playbook_dir }}/tasks/software/nvim/nvim-config"
     dest: /home/tobiasz/.config/nvim
     owner: tobiasz
     group: tobiasz
 
 - name: software | nvim | ensure directories used for neovim
   file:
-    path: {{ item.dir }}
+    path: "{{ item.dir }}"
     state: directory
   with_items:
     { dir: /home/tobiasz/.local/share/debuggers }
@@ -77,3 +77,12 @@
   args:
     chdir: /home/tobiasz/.local/share/debuggers/vscode-java-test
 
+- name: software | nvim | copy nvim config
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: tobiasz
+    group: tobiasz
+  with_items:
+    - { src: '{{ playbook_dir }}/tasks/software/nvim/ideavimrc', dest: '/home/tobiasz/.ideavimrc' }
+    - { src: '{{ playbook_dir }}/tasks/software/nvim/vimrc', dest: '/home/tobiasz/.vimrc' }

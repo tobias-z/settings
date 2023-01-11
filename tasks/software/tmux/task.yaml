@@ -1,13 +1,12 @@
 - name: software | tmux | install tmux
-  become: true
   package:
     name: tmux
     state: latest
 
 - name: software | tmux | copy tmux config
   copy:
-    src: {{ item.src }}
-    dest: {{ item.dest }}
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
     owner: tobiasz
     group: tobiasz
   with_items:

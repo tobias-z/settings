@@ -1,0 +1,62 @@
+- name: software | zsh | check if zsh exists
+  shell: command -v zsh
+  register: zsh_exists
+  ignore_errors: yes
+
+- name: software | zsh | install zsh
+  package:
+    name: zsh
+    state: latest
+
+- name: software | zsh | make default shell zsh
+  user:
+    name: "{{ ansible_user }}"
+    shell: /bin/zsh
+
+- name: software | zsh | download oh my zsh installer
+  when: zsh_exists is failed
+  get_url:
+    url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+    dest: /tmp/oh-my-zsh-install.sh
+    mode: '0755'
+    force: 'yes'
+
+- name: software | zsh | install oh my zsh
+  when: zsh_exists is failed
+  shell: /tmp/oh-my-zsh-install.sh --unattended --keep-zshrc
+  args:
+    executable: /bin/sh
+
+- name: software | zsh | install oh my zsh extensions
+  when: zsh_exists is failed
+  shell: |
+    zsh_custom="$HOME/.oh-my-zsh/custom"
+           
+    git clone https://github.com/spaceship-prompt/spaceship-prompt.git "$zsh_custom/themes/spaceship-prompt" --depth=1
+    ln -s "$zsh_custom/themes/spaceship-prompt/spaceship.zsh-theme" "$zsh_custom/themes/spaceship.zsh-theme"
+    
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${zsh_custom:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${zsh_custom:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
+
+- name: software | zsh | copy zshrc
+  copy:
+    src: "{{ playbook_dir }}/tasks/software/zsh/zshrc"
+    dest: "/home/{{ ansible_user }}/.zshrc"
+    owner: tobiasz
+    group: tobiasz
+
+- name: software | zsh | ensure zshenv file
+  copy:
+    dest: "/home/{{ ansible_user }}/.zshenv"
+    owner: tobiasz
+    group: tobiasz
+    content: |
+      . "$HOME/.cargo/env"
+  
+      export DOCKER_TOKEN="{{ docker_token }}"
+      export TF_TOKEN_app_terraform_io="{{ tf_token_app_terraform_io }}"
+      export TF_TOKEN="{{ tf_token }}"
+      export LINODE_TOKEN="{{ linode_token }}"
+      export DIGITAL_OCEAN_TOKEN="{{ digital_ocean_token }}"
+      export GITHUB_TOKEN="{{ github_token }}

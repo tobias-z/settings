@@ -1,0 +1,23 @@
+[init]
+	defaultBranch = main
+[user]
+	email = tobias.zimmer007@gmail.com
+	name = Tobias Zimmermann
+[alias]
+	hardreset = reset --hard origin/main
+	history = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+	type = cat-file -t
+  dump = cat-file -p
+	aliases = config --get-regexp "^alias\\."
+	staged = diff --staged
+	ac = !git add . && git commit
+  wt = worktree
+  gone = ! "git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" {print $1}' | xargs -r git branch -D"
+[mergetool "nvim"]
+  cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
+[merge]
+  tool = nvim
+[mergetool]
+  prompt = false
+[core]
+	editor = /usr/bin/vim

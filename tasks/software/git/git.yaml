@@ -1,0 +1,14 @@
+- name: software | git | install git
+  package:
+    name: git
+    state: latest
+
+- name: software | git | ensure git files
+  copy:
+    src: "{{ playbook_dir }}/tasks/software/git/{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: tobiasz
+    group: tobiasz
+  with_items:
+    - { src: 'gitconfig', dest: '/home/{{ ansible_user }}/.gitconfig' }
+    - { src: 'gitignore', dest: '/home/{{ ansible_user }}/.gitignore' }

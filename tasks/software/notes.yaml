@@ -13,7 +13,7 @@
 
 - name: software | polybar | make launch script executable
   file:
-    dest: /home/tobiasz/Documents/my-notes/bin/{{ item.src }}
+    dest: "/home/tobiasz/Documents/my-notes/bin/{{ item.src }}"
     mode: a+x
   with_items:
     - { src: 'notes' }

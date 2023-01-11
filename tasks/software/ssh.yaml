@@ -1,6 +1,6 @@
 - name: software | ssh | generate SSH key
   user:
-    name: {{ ansible_user }}
+    name: "{{ ansible_user }}"
     generate_ssh_key: yes
     ssh_key_type: ed25519
     ssh_key_file: .ssh/id_ed25519
@@ -36,7 +36,7 @@
 - name: software | ssh | setup github with generated ssh key
   when: gh_exists is failed
   environment:
-    GITHUB_TOKEN: {{ github_token }}
+    GITHUB_TOKEN: "{{ github_token }}"
   shell: |
     echo "$GITHUB_TOKEN" >> /tmp/token.txt
     gh auth login --with-token < /tmp/token.txt

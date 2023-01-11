@@ -1,7 +1,7 @@
 - name: software | useful-scripts | copy scripts
   copy:
-    src: {{ playbook_dir }}/tasks/software/useful-scripts/{{ item.name }}
-    dest: /home/tobiasz/.local/bin/{{ item.name }}
+    src: "{{ playbook_dir }}/tasks/software/useful-scripts/{{ item.name }}"
+    dest: "/home/{{ ansible_user }}/.local/bin/{{ item.name }}"
     owner: tobiasz
     group: tobiasz
   with_items:

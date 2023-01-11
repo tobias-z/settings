@@ -1,10 +1,13 @@
-- name: software | golang | remove old golang
-  file:
-    path: /usr/local/go
-    state: absent
-
 - name: software | golang | install golang
-  ansible.builtin.unarchive:
-    src: https://go.dev/dl/go1.19.4.linux-amd64.tar.gz
-    dest: /usr/local
-    remote_src: yes
+  package:
+    name: golang-go
+    state: latest
+
+- name: software | golang | ensure golang directories
+  file:
+    path: "/home/{{ ansible_user }}/go/{{ item.dir }}"
+    state: directory
+  with_items:
+    - { dir: 'bin' }
+    - { dir: 'src' }
+    - { dir: 'pkg' }

@@ -31,19 +31,11 @@
       - ca-certificates
       - gnupg2
       - vim
+      - xclip
+      - nala
     state: latest
 
 - name: software | packages | install/update core snap
   snap:
     name:  core
     state: present
-
-- name: software | packages | install nala
-  package:
-    name: nala
-    state: latest
-
-- name: software | packages | update cache for nala
-  apt:
-    update_cache: yes
-  changed_when: False

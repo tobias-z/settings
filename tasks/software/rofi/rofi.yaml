@@ -5,7 +5,7 @@
 
 - name: software | rofi | ensure rofi directories
   file:
-    path: /home/tobiasz/{{ item.dir }}
+    path: "/home/tobiasz/{{ item.dir }}"
     state: directory
     owner: tobiasz
     group: tobiasz
@@ -16,8 +16,8 @@
 
 - name: software | rofi | copy rofi config
   copy:
-    src: {{ item.src }}
-    dest: {{ item.dest }}
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
     owner: tobiasz
     group: tobiasz
   with_items:
