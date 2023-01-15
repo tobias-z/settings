@@ -1,5 +1,5 @@
-- hosts: all
-  tags: always
+- hosts: localhost
+  connection: local
   become: true
   pre_tasks:
     - name: pre-run | include user settings
