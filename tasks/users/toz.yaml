@@ -16,6 +16,5 @@
     - { dir: .local/share/applications }
     - { dir: bin }
     - { dir: dev }
-    - { dir: dev/plugins }
     - { dir: dev/projects }
     - { dir: dev/devops }
