@@ -10,7 +10,7 @@
 
 - name: software | zsh | make default shell zsh
   user:
-    name: "{{ ansible_user }}"
+    name: "{{ the_user }}"
     shell: /bin/zsh
 
 - name: software | zsh | download oh my zsh installer
@@ -42,13 +42,13 @@
 - name: software | zsh | copy zshrc
   copy:
     src: "{{ playbook_dir }}/tasks/software/zsh/zshrc"
-    dest: "/home/{{ ansible_user }}/.zshrc"
+    dest: "/home/{{ the_user }}/.zshrc"
     owner: tobiasz
     group: tobiasz
 
 - name: software | zsh | ensure zshenv file
   copy:
-    dest: "/home/{{ ansible_user }}/.zshenv"
+    dest: "/home/{{ the_user }}/.zshenv"
     owner: tobiasz
     group: tobiasz
     content: |

@@ -5,7 +5,7 @@
 
 - name: software | golang | ensure golang directories
   file:
-    path: "/home/{{ ansible_user }}/go/{{ item.dir }}"
+    path: "/home/{{ the_user }}/go/{{ item.dir }}"
     state: directory
   with_items:
     - { dir: 'bin' }

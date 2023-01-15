@@ -5,5 +5,5 @@
     owner: tobiasz
     group: tobiasz
   with_items:
-    - { src: 'xinitrc', dest: '/home/{{ ansible_user }}/.xinitrc' }
-    - { src: 'Xmodmap', dest: '/home/{{ ansible_user }}/.Xmodmap' }
+    - { src: 'xinitrc', dest: '/home/{{ the_user }}/.xinitrc' }
+    - { src: 'Xmodmap', dest: '/home/{{ the_user }}/.Xmodmap' }

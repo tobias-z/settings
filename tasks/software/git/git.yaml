@@ -10,5 +10,5 @@
     owner: tobiasz
     group: tobiasz
   with_items:
-    - { src: 'gitconfig', dest: '/home/{{ ansible_user }}/.gitconfig' }
-    - { src: 'gitignore', dest: '/home/{{ ansible_user }}/.gitignore' }
+    - { src: 'gitconfig', dest: '/home/{{ the_user }}/.gitconfig' }
+    - { src: 'gitignore', dest: '/home/{{ the_user }}/.gitignore' }

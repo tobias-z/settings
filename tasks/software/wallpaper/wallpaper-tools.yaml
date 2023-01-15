@@ -18,7 +18,7 @@
 - name: software | wallpaper | copy wall papers
   copy:
     src: "{{ playbook_dir }}/tasks/software/wallpaper/wallpapers/{{ item.name }}"
-    dest: "/home/{{ ansible_user }}/Pictures/wallpapers/{{ item.name }}"
+    dest: "/home/{{ the_user }}/Pictures/wallpapers/{{ item.name }}"
     owner: tobiasz
     group: tobiasz
   with_items:
