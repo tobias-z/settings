@@ -1,0 +1,21 @@
+- name: users | toz | create personal config directories
+  tags: dotfiles,dotfiles-toz
+  file:
+    path: /home/toz/{{ item.dir }}
+    state: directory
+    owner: toz
+    group: toz
+    mode: 0700
+  with_items:
+    - { dir: .config }
+    - { dir: .config/autostart }
+    - { dir: .config/gtk-3.0 }
+    - { dir: .local }
+    - { dir: .local/bin }
+    - { dir: .local/share }
+    - { dir: .local/share/applications }
+    - { dir: bin }
+    - { dir: dev }
+    - { dir: dev/plugins }
+    - { dir: dev/projects }
+    - { dir: dev/devops }

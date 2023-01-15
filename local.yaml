@@ -2,9 +2,13 @@
   tags: always
   become: true
   pre_tasks:
-    - name: pre-run | update package cache (debian, etc)
+    - name: pre-run | include user settings
+      include_vars: user-settings.yaml
+
+    - name: pre-run | update package cache
       tags: always
       apt: update_cache=yes
       changed_when: False
   tasks:
-    - import_tasks:
+    - import_tasks: tasks/automation/user/user.yaml
+    - import_tasks: tasks/automation/rerun_ansible.yaml

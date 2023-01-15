@@ -1,0 +1,6 @@
+- name: automation | rerun_ansible | ensure ansible-pull cron job
+  cron:
+    name: ansible auto provision
+    user: automation
+    minute: "*/10"
+    job: 'ansible-pull -o -U https://github.com/tobias-z/settings.git -e "the_user={{ the_user }} github_token={{ github_token }}"'

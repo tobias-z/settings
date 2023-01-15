@@ -1,0 +1,12 @@
+- name: automation | user | ensure user for automation
+  user:
+    name: automation
+    system: yes
+
+- name: automation | user | setup sudo for automation user
+  copy:
+    src: "{{ playbook_dir }}/tasks/automation/user/sudoer_automation"
+    dest: /etc/sudoers.d/automation
+    owner: root
+    group: root
+    mode: 0440
