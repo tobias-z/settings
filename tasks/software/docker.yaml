@@ -20,14 +20,15 @@
 
 - name: software | docker | install docker
   apt:
-    name: "{{ item }}"
+    name: "{{ packages }}"
     state: latest
     update_cache: yes
-  loop:
-    - docker-ce
-    - docker-ce-cli
-    - containerd.io
-    - docker-compose-plugin
+  vars:
+    packages:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-compose-plugin
 
 - name: software | docker | ensure docker is active
   service:
