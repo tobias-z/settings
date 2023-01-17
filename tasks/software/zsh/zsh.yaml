@@ -23,6 +23,7 @@
 
 - name: software | zsh | install oh my zsh
   when: not zsh.stat.exists
+  become_user: "{{ the_user }}"
   shell: /tmp/oh-my-zsh-install.sh --unattended --keep-zshrc
   args:
     executable: /bin/sh
