@@ -11,7 +11,11 @@
       changed_when: False
   tasks:
     - import_tasks: tasks/automation/user/user.yaml
-      when: "{{ the_user }}['automation']['enabled'] == true"
+      vars:
+        task_enabled: {{ the_user }}['automation']['enabled']
+      when: task_enabled|bool
 
     - import_tasks: tasks/automation/rerun_ansible.yaml
-      when: "{{ the_user }}['automation']['monitor-settings'] == true"
+      vars:
+        task_enabled: {{ the_user }}['automation']['monitor-settings']
+      when: task_enabled|bool
