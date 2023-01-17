@@ -10,7 +10,7 @@
       apt: update_cache=yes
       changed_when: False
   tasks:
-    - import_tasks: "tasks/users/{{ the_user }}"
+    - import_tasks: "tasks/users/{{ the_user }}.yaml"
 
     - import_tasks: tasks/software/packages.yaml
       vars:
