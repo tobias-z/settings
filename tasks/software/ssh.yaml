@@ -44,3 +44,10 @@
   shell: |
     gh auth login --with-token < /tmp/token.txt
     gh ssh-key add /home/{{ the_user }}/.ssh/id_ed25519.pub
+
+- name: software | ssh | ensure github is present as known host
+  known_hosts:
+    name: "github.com"
+    state: present
+    key: "{{ lookup('pipe', 'ssh-keyscan github.com') }}"
+    hash_host: true
