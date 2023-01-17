@@ -46,6 +46,16 @@
     groups: docker
     append: yes
 
+- name: software | docker | ensure docker plugins directory
+  file:
+    path: "/home/{{ the_user }}/{{ item.dir }}"
+    state: directory
+    owner: "{{ the_user }}"
+    group: "{{ the_user }}"
+  with_items:
+    - { dir: .docker }
+    - { dir: .docker/cli-plugins }
+
 - name: software | docker | Install docker-compose
   get_url:
     url: https://github.com/docker/compose/releases/download/v2.14.2/docker-compose-linux-x86_64
