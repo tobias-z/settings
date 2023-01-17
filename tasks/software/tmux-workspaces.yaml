@@ -5,6 +5,7 @@
 
 - name: software | tmux-workspaces | clone tmux-workspaces
   when: tw_exists is failed
+  become_user: "{{ the_user }}"
   git:
     repo: git@github.com:tobias-z/tmux-workspaces.git
     dest: /home/tobiasz/dev/projects/tmux-workspaces

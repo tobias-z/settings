@@ -5,6 +5,7 @@
 
 - name: software | notes | clone notes
   when: notes_exists is failed
+  become_user: "{{ the_user }}"
   git:
     repo: git@github.com:tobias-z/my-notes.git
     dest: /home/tobiasz/Documents/my-notes
