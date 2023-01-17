@@ -5,6 +5,6 @@
 
 - name: software | lazydocker | install lazydocker
   when: lazydocker_exists is failed
-  shell: go install github.com/jesseduffield/lazydocker
+  shell: go install github.com/jesseduffield/lazydocker@latest
   args:
     executable: /bin/zsh
