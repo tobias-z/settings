@@ -24,49 +24,49 @@
   when: nvim_exists is failed
   git:
     repo: git clone https://github.com/neovim/neovim
-    dest: /home/tobiasz/dev/projects/neovim
+    dest: "/home/{{ the_user }}/dev/projects/neovim"
     clone: yes
     update: yes
 
 - name: software | nvim | build nvim
   when: nvim_exists is failed
   shell: |
-    cd /home/tobiasz/dev/projects/neovim
+    cd /home/{{ the_user }}/dev/projects/neovim
     make CMAKE_BUILD_TYPE=RelWithDebInfo
     sudo make install
     
 - name: software | nvim | copy nvim config
   copy:
     src: "{{ playbook_dir }}/tasks/software/nvim/nvim-config"
-    dest: /home/tobiasz/.config/nvim
-    owner: tobiasz
-    group: tobiasz
+    dest: "/home/{{ the_user }}/.config/nvim"
+    owner: "{{ the_user }}"
+    group: "{{ the_user }}"
 
 - name: software | nvim | ensure directories used for neovim
   file:
     path: "{{ item.dir }}"
     state: directory
   with_items:
-    { dir: /home/tobiasz/.local/share/debuggers }
-    { dir: /home/tobiasz/.local/share/jdtls }
-    { dir: /home/tobiasz/.local/share/jdtls/workspaces }
+    { dir: "/home/{{ the_user }}/.local/share/debuggers" }
+    { dir: "/home/{{ the_user }}/.local/share/jdtls" }
+    { dir: "/home/{{ the_user }}/.local/share/jdtls/workspaces" }
 
 - name: software | nvim | clone java-debug debugger
   git:
     repo: https://github.com/microsoft/java-debug
-    dest: /home/tobiasz/.local/share/debuggers/java-debug
+    dest: "/home/{{ the_user }}/.local/share/debuggers/java-debug"
     clone: yes
     update: yes
 
 - name: software | nvim | install java-debug debugger
   ansible.builtin.shell: ./mvnw clean install
   args:
-    chdir: /home/tobiasz/.local/share/debuggers/java-debug
+    chdir: "/home/{{ the_user }}/.local/share/debuggers/java-debug"
 
 - name: software | nvim | clone vscode-java-test debugger
   git:
     repo: https://github.com/microsoft/vscode-java-test
-    dest: /home/tobiasz/.local/share/debuggers/vscode-java-test
+    dest: "/home/{{ the_user }}/.local/share/debuggers/vscode-java-test"
     clone: yes
     update: yes
 
@@ -75,14 +75,14 @@
     npm install
     npm run build-plugin
   args:
-    chdir: /home/tobiasz/.local/share/debuggers/vscode-java-test
+    chdir: "/home/{{ the_user }}/.local/share/debuggers/vscode-java-test"
 
 - name: software | nvim | copy nvim config
   copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-    owner: tobiasz
-    group: tobiasz
+    owner: "{{ the_user }}"
+    group: "{{ the_user }}"
   with_items:
-    - { src: '{{ playbook_dir }}/tasks/software/nvim/ideavimrc', dest: '/home/tobiasz/.ideavimrc' }
-    - { src: '{{ playbook_dir }}/tasks/software/nvim/vimrc', dest: '/home/tobiasz/.vimrc' }
+    - { src: '{{ playbook_dir }}/tasks/software/nvim/ideavimrc', dest: '/home/{{ the_user }}/.ideavimrc' }
+    - { src: '{{ playbook_dir }}/tasks/software/nvim/vimrc', dest: '/home/{{ the_user }}/.vimrc' }

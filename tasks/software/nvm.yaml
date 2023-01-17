@@ -15,7 +15,7 @@
   when: nvm_exists is failed
   shell: |
     /bin/bash /tmp/nvm_install.sh
-    source /home/tobiasz/.bashrc
+    source /home/{{ the_user }}/.bashrc
   args:
     executable: /bin/bash
 

@@ -10,17 +10,17 @@
   copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-    owner: tobiasz
-    group: tobiasz
+    owner: "{{ the_user }}"
+    group: "{{ the_user }}"
   with_items:
-    - { src: '{{ playbook_dir }}/tasks/software/wallpaper/set-wallpaper', dest: '/home/tobiasz/.local/bin/set-wallpaper' }
+    - { src: '{{ playbook_dir }}/tasks/software/wallpaper/set-wallpaper', dest: '/home/{{ the_user }}/.local/bin/set-wallpaper' }
 
 - name: software | wallpaper | copy wall papers
   copy:
     src: "{{ playbook_dir }}/tasks/software/wallpaper/wallpapers/{{ item.name }}"
     dest: "/home/{{ the_user }}/Pictures/wallpapers/{{ item.name }}"
-    owner: tobiasz
-    group: tobiasz
+    owner: "{{ the_user }}"
+    group: "{{ the_user }}"
   with_items:
     - { src: 'blank-black.jpg' }
     - { src: 'house.png' }

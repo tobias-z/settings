@@ -5,10 +5,10 @@
 
 - name: software | rofi | ensure rofi directories
   file:
-    path: "/home/tobiasz/{{ item.dir }}"
+    path: "/home/{{ the_user }}/{{ item.dir }}"
     state: directory
-    owner: tobiasz
-    group: tobiasz
+    owner: "{{ the_user }}"
+    group: "{{ the_user }}"
     mode: 0700
   with_items:
     - { dir: .config/rofi }
@@ -18,9 +18,9 @@
   copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-    owner: tobiasz
-    group: tobiasz
+    owner: "{{ the_user }}"
+    group: "{{ the_user }}"
   with_items:
-    - { src: '{{ playbook_dir }}/tasks/software/rofi/rofi-config.rasi', dest: '/home/tobiasz/.config/rofi/config.rasi' }
-    - { src: '{{ playbook_dir }}/tasks/software/rofi/rofi-launcher.sh', dest: '/home/tobiasz/.local/bin/rofi-launcher.sh' }
-    - { src: '{{ playbook_dir }}/tasks/software/rofi/rofi-theme.sh', dest: '/home/tobiasz/.config/rofi/themes/my-theme.rasi' }
+    - { src: '{{ playbook_dir }}/tasks/software/rofi/rofi-config.rasi', dest: '/home/{{ the_user }}/.config/rofi/config.rasi' }
+    - { src: '{{ playbook_dir }}/tasks/software/rofi/rofi-launcher.sh', dest: '/home/{{ the_user }}/.local/bin/rofi-launcher.sh' }
+    - { src: '{{ playbook_dir }}/tasks/software/rofi/rofi-theme.sh', dest: '/home/{{ the_user }}/.config/rofi/themes/my-theme.rasi' }

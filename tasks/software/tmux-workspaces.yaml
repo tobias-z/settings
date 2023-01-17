@@ -1,19 +1,13 @@
-- name: software | tmux-workspaces | check if tmux-workspaces
-  shell: command -v tw
-  register: tw_exists
-  ignore_errors: yes
-
 - name: software | tmux-workspaces | clone tmux-workspaces
-  when: tw_exists is failed
   become_user: "{{ the_user }}"
   git:
     repo: git@github.com:tobias-z/tmux-workspaces.git
-    dest: /home/tobiasz/dev/projects/tmux-workspaces
+    dest: "/home/{{ the_user }}/dev/projects/tmux-workspaces"
     clone: yes
     update: yes
 
 - name: software | tmux-workspaces | make tw script executable
   file:
-    dest: /home/tobiasz/dev/projects/tmux-workspaces/src/tw
+    dest: "/home/{{ the_user }}/dev/projects/tmux-workspaces/src/tw"
     mode: a+x
 

@@ -11,7 +11,7 @@ tobiasz:
     polybar: True
     rofi: True
     tmux: True
-    useful-scripts: True
+    useful_scripts: True
     wallpaper: True
     xfiles: True
     zsh: True
@@ -22,10 +22,10 @@ tobiasz:
     docker: True
     lazydocker: True
     kubernetes: True
-    font-manager: True
+    font_manager: True
     fzf: True
     golang: True
-    jetbrains-toolbox: True
+    jetbrains_toolbox: True
     latex: True
     lua: True
     notes: True
@@ -42,16 +42,16 @@ tobiasz:
     terraform: True
     themes: True
     thunderbird: True
-    tmux-workspaces: True
+    tmux_workspaces: True
     vagrant: True
     virtualbox: True
-    x11-packages: True
+    x11_packages: True
     zathura: True
     zoom: True
 
 toz:
   automation:
-    enabled: True
+    enabled: False
   software:
     git: True
     alacritty: True
@@ -61,19 +61,22 @@ toz:
     polybar: True
     rofi: True
     tmux: True
-    useful-scripts: True
+    useful_scripts: True
     wallpaper: True
     xfiles: True
     zsh: True
     ansible: True
     bitwarden: True
     code: True
+    discord: False
     docker: True
     lazydocker: True
-    font-manager: True
+    kubernetes: False
+    font_manager: True
     fzf: True
     golang: True
-    jetbrains-toolbox: True
+    jetbrains_toolbox: True
+    latex: False
     lua: True
     notes: True
     nvm: True
@@ -86,8 +89,12 @@ toz:
     secrets: True
     slack: True
     ssh: True
+    terraform: False
     themes: True
-    tmux-workspaces: True
-    virtualbox: True
-    x11-packages: True
+    thunderbird: False
+    tmux_workspaces: True
+    vagrant: False
+    virtualbox: False
+    x11_packages: True
     zathura: True
+    zoom: False

@@ -2,8 +2,8 @@
   copy:
     src: "{{ playbook_dir }}/tasks/software/useful-scripts/{{ item.name }}"
     dest: "/home/{{ the_user }}/.local/bin/{{ item.name }}"
-    owner: tobiasz
-    group: tobiasz
+    owner: "{{ the_user }}"
+    group: "{{ the_user }}"
   with_items:
     - { name: 'dark-chrome' }
     - { name: 'google-java-format' }

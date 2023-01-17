@@ -4,17 +4,16 @@
   ignore_errors: yes
 
 - name: software | notes | clone notes
-  when: notes_exists is failed
   become_user: "{{ the_user }}"
   git:
     repo: git@github.com:tobias-z/my-notes.git
-    dest: /home/tobiasz/Documents/my-notes
+    dest: "/home/{{ the_user }}/Documents/my-notes"
     clone: yes
     update: yes
 
 - name: software | polybar | make launch script executable
   file:
-    dest: "/home/tobiasz/Documents/my-notes/bin/{{ item.src }}"
+    dest: "/home/{{ the_user }}/Documents/my-notes/bin/{{ item.src }}"
     mode: a+x
   with_items:
     - { src: 'notes' }

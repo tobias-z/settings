@@ -7,8 +7,8 @@
   copy:
     src: "{{ playbook_dir }}/tasks/software/git/{{ item.src }}"
     dest: "{{ item.dest }}"
-    owner: tobiasz
-    group: tobiasz
+    owner: "{{ the_user }}"
+    group: "{{ the_user }}"
   with_items:
     - { src: 'gitconfig', dest: '/home/{{ the_user }}/.gitconfig' }
     - { src: 'gitignore', dest: '/home/{{ the_user }}/.gitignore' }

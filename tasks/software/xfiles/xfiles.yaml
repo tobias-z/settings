@@ -2,8 +2,8 @@
   copy:
     src: "{{ playbook_dir }}/tasks/software/xfiles/{{ item.src }}"
     dest: "{{ item.dest }}"
-    owner: tobiasz
-    group: tobiasz
+    owner: "{{ the_user }}"
+    group: "{{ the_user }}"
   with_items:
     - { src: 'xinitrc', dest: '/home/{{ the_user }}/.xinitrc' }
     - { src: 'Xmodmap', dest: '/home/{{ the_user }}/.Xmodmap' }

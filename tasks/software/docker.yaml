@@ -49,11 +49,11 @@
 - name: software | docker | Install docker-compose
   get_url:
     url: https://github.com/docker/compose/releases/download/v2.14.2/docker-compose-linux-x86_64
-    dest: /home/tobiasz/.docker/cli-plugins/docker-compose
+    dest: "/home/{{ the_user }}/.docker/cli-plugins/docker-compose"
     mode: 'u+x,g+x'
 
 - name: software | docker | Change file ownership, group and permissions
   file:
-    path: /home/tobiasz/.docker/cli-plugins/docker-compose
-    owner: tobiasz
-    group: tobiasz
+    path: "/home/{{ the_user }}/.docker/cli-plugins/docker-compose"
+    owner: "{{ the_user }}"
+    group: "{{ the_user }}"

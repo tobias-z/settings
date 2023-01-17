@@ -42,9 +42,199 @@
         task_enabled: "{{ vars[the_user].software.golang }}"
       when: task_enabled|bool
 
+    - import_tasks: tasks/software/docker.yaml
+      vars:
+        task_enabled: "{{ vars[the_user].software.docker }}"
+      when: task_enabled|bool
+
     - import_tasks: tasks/software/lazydocker.yaml
       vars:
         task_enabled: "{{ vars[the_user].software.lazydocker }}"
+      when: task_enabled|bool
+
+    - import_tasks: tasks/software/kubernetes.yaml
+      vars:
+        task_enabled: "{{ vars[the_user].software.kubernetes }}"
+      when: task_enabled|bool
+
+    - import_tasks: tasks/software/ansible.yaml
+      vars:
+        task_enabled: "{{ vars[the_user].software.ansible }}"
+      when: task_enabled|bool
+
+    - import_tasks: tasks/software/bitwarden.yaml
+      vars:
+        task_enabled: "{{ vars[the_user].software.bitwarden }}"
+      when: task_enabled|bool
+
+    - import_tasks: tasks/software/code.yaml
+      vars:
+        task_enabled: "{{ vars[the_user].software.code }}"
+      when: task_enabled|bool
+
+    - import_tasks: tasks/software/discord.yaml
+      vars:
+        task_enabled: "{{ vars[the_user].software.discord }}"
+      when: task_enabled|bool
+
+    - import_tasks: tasks/software/slack.yaml
+      vars:
+        task_enabled: "{{ vars[the_user].software.slack }}"
+      when: task_enabled|bool
+
+    - import_tasks: tasks/software/zoom.yaml
+      vars:
+        task_enabled: "{{ vars[the_user].software.zoom }}"
+      when: task_enabled|bool
+
+    - import_tasks: tasks/software/font-manager.yaml
+      vars:
+        task_enabled: "{{ vars[the_user].software.font_manager }}"
+      when: task_enabled|bool
+
+    - import_tasks: tasks/software/fzf.yaml
+      vars:
+        task_enabled: "{{ vars[the_user].software.fzf }}"
+      when: task_enabled|bool
+
+    - import_tasks: tasks/software/jetbrains-toolbox.yaml
+      vars:
+        task_enabled: "{{ vars[the_user].software.jetbrains_toolbox }}"
+      when: task_enabled|bool
+
+    - import_tasks: tasks/software/latex.yaml
+      vars:
+        task_enabled: "{{ vars[the_user].software.latex }}"
+      when: task_enabled|bool
+
+    - import_tasks: tasks/software/rust.yaml
+      vars:
+        task_enabled: "{{ vars[the_user].software.rust }}"
+      when: task_enabled|bool
+
+    - import_tasks: tasks/software/lua.yaml
+      vars:
+        task_enabled: "{{ vars[the_user].software.lua }}"
+      when: task_enabled|bool
+
+    - import_tasks: tasks/software/notes.yaml
+      vars:
+        task_enabled: "{{ vars[the_user].software.notes }}"
+      when: task_enabled|bool
+
+    - import_tasks: tasks/software/nvm.yaml
+      vars:
+        task_enabled: "{{ vars[the_user].software.nvm }}"
+      when: task_enabled|bool
+
+    - import_tasks: tasks/software/peek.yaml
+      vars:
+        task_enabled: "{{ vars[the_user].software.peek }}"
+      when: task_enabled|bool
+
+    - import_tasks: tasks/software/postman.yaml
+      vars:
+        task_enabled: "{{ vars[the_user].software.postman }}"
+      when: task_enabled|bool
+
+    - import_tasks: tasks/software/python.yaml
+      vars:
+        task_enabled: "{{ vars[the_user].software.python }}"
+      when: task_enabled|bool
+
+    - import_tasks: tasks/software/sdkman.yaml
+      vars:
+        task_enabled: "{{ vars[the_user].software.sdkman }}"
+      when: task_enabled|bool
+
+    - import_tasks: tasks/software/terraform.yaml
+      vars:
+        task_enabled: "{{ vars[the_user].software.terraform }}"
+      when: task_enabled|bool
+
+    - import_tasks: tasks/software/themes.yaml
+      vars:
+        task_enabled: "{{ vars[the_user].software.themes }}"
+      when: task_enabled|bool
+
+    - import_tasks: tasks/software/thunderbird.yaml
+      vars:
+        task_enabled: "{{ vars[the_user].software.thunderbird }}"
+      when: task_enabled|bool
+
+    - import_tasks: tasks/software/tmux-workspaces.yaml
+      vars:
+        task_enabled: "{{ vars[the_user].software.tmux_workspaces }}"
+      when: task_enabled|bool
+
+    - import_tasks: tasks/software/vagrant.yaml
+      vars:
+        task_enabled: "{{ vars[the_user].software.vagrant }}"
+      when: task_enabled|bool
+
+    - import_tasks: tasks/software/virtualbox.yaml
+      vars:
+        task_enabled: "{{ vars[the_user].software.virtualbox }}"
+      when: task_enabled|bool
+
+    - import_tasks: tasks/software/zathura.yaml
+      vars:
+        task_enabled: "{{ vars[the_user].software.zathura }}"
+      when: task_enabled|bool
+
+    - import_tasks: tasks/software/alacritty/task.yaml
+      vars:
+        task_enabled: "{{ vars[the_user].software.alacritty }}"
+      when: task_enabled|bool
+
+    - import_tasks: tasks/software/fonts/fonts.yaml
+      vars:
+        task_enabled: "{{ vars[the_user].software.fonts }}"
+      when: task_enabled|bool
+
+    - import_tasks: tasks/software/wallpaper/wallpaper-tools.yaml
+      vars:
+        task_enabled: "{{ vars[the_user].software.wallpaper }}"
+      when: task_enabled|bool
+
+    - import_tasks: tasks/software/x11-packages.yaml
+      vars:
+        task_enabled: "{{ vars[the_user].software.x11_packages }}"
+      when: task_enabled|bool
+
+    - import_tasks: tasks/software/i3/i3.yaml
+      vars:
+        task_enabled: "{{ vars[the_user].software.i3 }}"
+      when: task_enabled|bool
+
+    - import_tasks: tasks/software/polybar/polybar.yaml
+      vars:
+        task_enabled: "{{ vars[the_user].software.polybar }}"
+      when: task_enabled|bool
+
+    - import_tasks: tasks/software/rofi/rofi.yaml
+      vars:
+        task_enabled: "{{ vars[the_user].software.rofi }}"
+      when: task_enabled|bool
+
+    - import_tasks: tasks/software/tmux/task.yaml
+      vars:
+        task_enabled: "{{ vars[the_user].software.tmux }}"
+      when: task_enabled|bool
+
+    - import_tasks: tasks/software/useful-scripts/useful-scripts.yaml
+      vars:
+        task_enabled: "{{ vars[the_user].software.useful_scripts }}"
+      when: task_enabled|bool
+
+    - import_tasks: tasks/software/xfiles/xfiles.yaml
+      vars:
+        task_enabled: "{{ vars[the_user].software.useful_scripts }}"
+      when: task_enabled|bool
+
+    - import_tasks: tasks/software/nvim/nvim.yaml
+      vars:
+        task_enabled: "{{ vars[the_user].software.nvim }}"
       when: task_enabled|bool
 
     - import_tasks: tasks/automation/user/user.yaml

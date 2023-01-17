@@ -19,7 +19,7 @@
 
 - name: software | sdkman | ensure sdkman config
   copy:
-    dest: /home/tobiasz/.sdkman/etc/config
+    dest: "/home/{{ the_user }}/.sdkman/etc/config"
     content: |
       sdkman_auto_answer=true
       sdkman_auto_complete=true
@@ -44,9 +44,9 @@
 - name: software | sdkman | install packages
   when: sdkman_exists is failed
   shell: |
-    sdk install java 17.0.4-amzn
-    sdk install java 8.0.342-amzn
-    sdk install java 11.0.16-amzn
-    sdk default java 17.0.4-amzn
+    sdk install java 17.0.5-tem
+    sdk install java 8.0.352-tem
+    sdk install java 11.0.17-tem
+    sdk default java 17.0.5-tem
     sdk install maven 3.8.7
     sdk install gradle 7.6

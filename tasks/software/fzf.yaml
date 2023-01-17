@@ -7,12 +7,13 @@
   when: fzf_exists is failed
   git:
     repo: https://github.com/junegunn/fzf.git
-    dest: /home/tobiasz/.fzf
+    dest: "/home/{{ the_user }}/.fzf"
     clone: yes
     update: yes
     depth: 1
 
 - name: software | fzf | install fzf
   when: fzf_exists is failed
-  ansible.builtin.shell: /home/tobiasz/.fzf/install --all
+  become_user: "{{ the_user }}"
+  ansible.builtin.shell: "/home/{{ the_user }}/.fzf/install --all"
 

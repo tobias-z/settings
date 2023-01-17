@@ -5,23 +5,23 @@
 
 - name: software | polybar | ensure polybar directory
   file:
-    path: /home/tobiasz/.config/polybar
+    path: "/home/{{ the_user }}/.config/polybar"
     state: directory
-    owner: tobiasz
-    group: tobiasz
+    owner: "{{ the_user }}"
+    group: "{{ the_user }}"
     mode: 0700
 
 - name: software | polybar | copy polybar config
   copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-    owner: tobiasz
-    group: tobiasz
+    owner: "{{ the_user }}"
+    group: "{{ the_user }}"
   with_items:
-    - { src: '{{ playbook_dir }}/tasks/software/polybar/polybar-config.ini', dest: '/home/tobiasz/polybar/config.ini' }
-    - { src: '{{ playbook_dir }}/tasks/software/polybar/launch.sh', dest: '/home/tobiasz/polybar/launch.sh' }
+    - { src: '{{ playbook_dir }}/tasks/software/polybar/polybar-config.ini', dest: '/home/{{ the_user }}/polybar/config.ini' }
+    - { src: '{{ playbook_dir }}/tasks/software/polybar/launch.sh', dest: '/home/{{ the_user }}/polybar/launch.sh' }
 
 - name: software | polybar | make launch script executable
   file:
-    dest: /home/tobiasz/.config/polybar/launch.sh
+    dest: "/home/{{ the_user }}/.config/polybar/launch.sh"
     mode: a+x

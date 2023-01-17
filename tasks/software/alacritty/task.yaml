@@ -7,12 +7,12 @@
 
 - name: software | alacritty | ensure config directory
   file:
-    path: /home/tobiasz/.config/alacritty
+    path: "/home/{{ the_user }}/.config/alacritty"
     state: directory
 
 - name: software | alacritty | copy alacritty config
   copy:
     src: "{{ playbook_dir }}/tasks/software/alacritty/alacritty.yaml"
-    dest: /home/tobiasz/.config/alacritty
-    owner: tobiasz
-    group: tobiasz
+    dest: "/home/{{ the_user }}/.config/alacritty"
+    owner: "{{ the_user }}"
+    group: "{{ the_user }}"
