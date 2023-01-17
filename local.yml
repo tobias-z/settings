@@ -12,10 +12,10 @@
   tasks:
     - import_tasks: tasks/automation/user/user.yaml
       vars:
-        task_enabled: {{ the_user }}['automation']['enabled']
+        task_enabled: "{{ the_user }}['automation']['enabled']"
       when: task_enabled|bool
 
     - import_tasks: tasks/automation/rerun_ansible.yaml
       vars:
-        task_enabled: {{ the_user }}['automation']['monitor-settings']
+        task_enabled: "{{ the_user }}['automation']['monitor-settings']"
       when: task_enabled|bool
