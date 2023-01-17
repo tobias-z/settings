@@ -47,9 +47,9 @@
     path: "{{ item.dir }}"
     state: directory
   with_items:
-    { dir: "/home/{{ the_user }}/.local/share/debuggers" }
-    { dir: "/home/{{ the_user }}/.local/share/jdtls" }
-    { dir: "/home/{{ the_user }}/.local/share/jdtls/workspaces" }
+    - { dir: "/home/{{ the_user }}/.local/share/debuggers" }
+    - { dir: "/home/{{ the_user }}/.local/share/jdtls" }
+    - { dir: "/home/{{ the_user }}/.local/share/jdtls/workspaces" }
 
 - name: software | nvim | clone java-debug debugger
   git:
