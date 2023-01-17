@@ -14,7 +14,7 @@
 
     - name: Print the gateway for each host when defined
       vars:
-        task_enabled: "{{ the_user }}['software']['packages']"
+        task_enabled: {{ vars[the_user].software.packages }}
       debug:
         msg: var = {{ task_enabled }}
 
