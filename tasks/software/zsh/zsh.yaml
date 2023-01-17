@@ -1,7 +1,7 @@
 - name: software | zsh | check if zsh exists
-  shell: command -v zsh
-  register: zsh_exists
-  ignore_errors: yes
+  stat:
+    path: "/home/{{ the_user }}/.oh-my-zsh/README.md"
+  register: zsh
 
 - name: software | zsh | install zsh
   package:
@@ -14,7 +14,7 @@
     shell: /bin/zsh
 
 - name: software | zsh | download oh my zsh installer
-  when: zsh_exists is failed
+  when: not zsh.stat.exists
   get_url:
     url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
     dest: /tmp/oh-my-zsh-install.sh
@@ -22,13 +22,13 @@
     force: 'yes'
 
 - name: software | zsh | install oh my zsh
-  when: zsh_exists is failed
+  when: not zsh.stat.exists
   shell: /tmp/oh-my-zsh-install.sh --unattended --keep-zshrc
   args:
     executable: /bin/sh
 
 - name: software | zsh | install oh my zsh extensions
-  when: zsh_exists is failed
+  when: not zsh.stat.exists
   shell: |
     zsh_custom="$HOME/.oh-my-zsh/custom"
            
