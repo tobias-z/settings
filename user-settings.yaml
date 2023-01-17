@@ -47,7 +47,7 @@ tobiasz:
     virtualbox: True
     x11_packages: True
     zathura: True
-    zoom: True
+    zoom: False
 
 toz:
   automation:
