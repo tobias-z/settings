@@ -22,7 +22,7 @@
     classic: true
 
 - name: software | kubernetes | check if minikube exists
-  shell: command -v sdk
+  shell: command -v minikube
   register: minikube_exists
   ignore_errors: yes
 
