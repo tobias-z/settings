@@ -32,9 +32,20 @@
         task_enabled: "{{ vars[the_user].software.secrets }}"
       when: task_enabled|bool
 
-    - name: "docker token"
-      debug:
-        msg: "docker token: {{ docker_token }}"
+    - import_tasks: tasks/software/zsh/zsh.yaml
+      vars:
+        task_enabled: "{{ vars[the_user].software.zsh }}"
+      when: task_enabled|bool
+
+    - import_tasks: tasks/software/golang.yaml
+      vars:
+        task_enabled: "{{ vars[the_user].software.golang }}"
+      when: task_enabled|bool
+
+    - import_tasks: tasks/software/lazydocker.yaml
+      vars:
+        task_enabled: "{{ vars[the_user].software.lazydocker }}"
+      when: task_enabled|bool
 
     - import_tasks: tasks/automation/user/user.yaml
       vars:
