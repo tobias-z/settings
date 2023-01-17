@@ -30,7 +30,7 @@ tobiasz:
     lua: True
     notes: True
     nvm: True
-    packages: True
+    packages: False
     peek: True
     postman: True
     python: True

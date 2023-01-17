@@ -10,12 +10,20 @@
       apt: update_cache=yes
       changed_when: False
   tasks:
+    - import_tasks: "tasks/users/{{ the_user }}"
+
+    - import_tasks: tasks/software/packages.yaml
+      vars:
+        task_enabled: "{{ the_user }}['software']['packages']"
+      when: task_enabled|bool
+
     - import_tasks: tasks/automation/user/user.yaml
       vars:
-        task_enabled: "{{ the_user }}['automation']['enabled']"
-      when: task_enabled|bool
+        automation_enabled: "{{ the_user }}['automation']['enabled']"
+      when: automation_enabled|bool
 
     - import_tasks: tasks/automation/rerun_ansible.yaml
       vars:
         task_enabled: "{{ the_user }}['automation']['monitor-settings']"
-      when: task_enabled|bool
+        automation_enabled: "{{ the_user }}['automation']['enabled']"
+      when: task_enabled|bool and automation_enabled|bool
