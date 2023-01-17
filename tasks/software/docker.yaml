@@ -8,20 +8,16 @@
       - software-properties-common
     state: latest
 
-  apt_key:
-    url: https://download.docker.com/linux/ubuntu/gpg
-    state: present
-
 - name: software | docker | add GPG key
   ansible.builtin.get_url:
     url: https://download.docker.com/linux/ubuntu/gpg
-    dest: /etc/apt/keyrings/docker.asc
+    dest: /etc/apt/trusted.gpg.d/docker.asc
     mode: '0644'
     force: true
 
 - name: software | docker | add docker repository to apt
   apt_repository:
-    repo: deb https://download.docker.com/linux/ubuntu bionic stable
+    repo: "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/docker.asc] https://download.docker.com/linux/ubuntu bionic stable"
     state: present
 
 - name: software | docker | install docker
