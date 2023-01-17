@@ -17,6 +17,25 @@
         task_enabled: "{{ vars[the_user].software.packages }}"
       when: task_enabled|bool
 
+    - import_tasks: tasks/software/ssh.yaml
+      vars:
+        task_enabled: "{{ vars[the_user].software.ssh }}"
+      when: task_enabled|bool
+
+    - import_tasks: tasks/software/git/git.yaml
+      vars:
+        task_enabled: "{{ vars[the_user].software.git }}"
+      when: task_enabled|bool
+
+    - import_tasks: tasks/software/secrets.yaml
+      vars:
+        task_enabled: "{{ vars[the_user].software.secrets }}"
+      when: task_enabled|bool
+
+    - name: "docker token"
+      debug:
+        msg: "docker token: {{ docker_token }}"
+
     - import_tasks: tasks/automation/user/user.yaml
       vars:
         automation_enabled: "{{ vars[the_user].automation.enabled }}"
