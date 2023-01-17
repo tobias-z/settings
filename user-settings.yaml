@@ -1,7 +1,7 @@
 tobiasz:
   automation:
     enabled: True
-    monitor-settings: True
+    monitor_settings: True
   software:
     git: True
     alacritty: True

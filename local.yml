@@ -12,12 +12,6 @@
   tasks:
     - import_tasks: "tasks/users/{{ the_user }}.yaml"
 
-    - name: Print the gateway for each host when defined
-      vars:
-        task_enabled: "{{ vars[the_user].software.packages }}"
-      debug:
-        msg: "var = {{ task_enabled }}"
-
     - import_tasks: tasks/software/packages.yaml
       vars:
         task_enabled: "{{ vars[the_user].software.packages }}"
@@ -30,6 +24,6 @@
 
     - import_tasks: tasks/automation/rerun_ansible.yaml
       vars:
-        task_enabled: "{{ vars[the_user].automation.monitor-settings }}"
+        task_enabled: "{{ vars[the_user].automation.monitor_settings }}"
         automation_enabled: "{{ vars[the_user].automation.enabled }}"
       when: task_enabled|bool and automation_enabled|bool
