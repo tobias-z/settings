@@ -12,11 +12,11 @@
   shell: luarocks install lanes
 
 - name: software | lua | install stylua
-  community.general.cargo:
-    name: stylua
-    state: latest
+  shell: cargo install stylua
+  args:
+    executable: /bin/zsh
 
 - name: software | lua | install tree-sitter-cli
-  community.general.cargo:
-    name: tree-sitter-cli
-    state: latest
+  shell: cargo install tree-sitter-cli
+  args:
+    executable: /bin/zsh
