@@ -39,6 +39,35 @@
     git clone https://github.com/zsh-users/zsh-autosuggestions ${zsh_custom:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${zsh_custom:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
+- name: software | zsh | ensure spaceship prompt
+  become_user: "{{ the_user }}"
+  git:
+    repo: https://github.com/spaceship-prompt/spaceship-prompt.git
+    dest: "/home/{{ the_user }}/.oh-my-zsh/custom/themes/spaceship-prompt"
+    clone: yes
+    update: yes
+
+- name: software | zsh | ensure symlink for spaceship prompt
+  become_user: "{{ the_user }}"
+  shell: |
+    zsh_custom="$HOME/.oh-my-zsh/custom"
+    ln -s "$zsh_custom/themes/spaceship-prompt/spaceship.zsh-theme" "$zsh_custom/themes/spaceship.zsh-theme"
+
+- name: software | zsh | ensure spaceship prompt
+  become_user: "{{ the_user }}"
+  git:
+    repo: https://github.com/zsh-users/zsh-autosuggestions
+    dest: "/home/{{ the_user }}/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
+    clone: yes
+    update: yes
+
+- name: software | zsh | ensure spaceship prompt
+  become_user: "{{ the_user }}"
+  git:
+    repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
+    dest: "/home/{{ the_user }}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
+    clone: yes
+    update: yes
 
 - name: software | zsh | copy zshrc
   copy:
