@@ -1,7 +1,9 @@
 - name: software | kubernetes | ensure apt signing key for kubernetes
-  apt_key:
+  ansible.builtin.get_url:
     url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
-    state: present
+    dest: /etc/apt/keyrings/kubernetes.asc
+    mode: '0644'
+    force: true
 
 - name: software | kubernetes | ensure apt repository for kubernetes
   apt_repository:

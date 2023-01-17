@@ -22,7 +22,7 @@ tobiasz:
     docker: True
     lazydocker: True
     kubernetes: True
-    font_manager: True
+    font_manager: False
     fzf: True
     golang: True
     jetbrains_toolbox: True
@@ -72,7 +72,7 @@ toz:
     docker: True
     lazydocker: True
     kubernetes: False
-    font_manager: True
+    font_manager: False
     fzf: True
     golang: True
     jetbrains_toolbox: True

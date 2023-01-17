@@ -8,10 +8,16 @@
       - software-properties-common
     state: latest
 
-- name: software | docker | add GPG key
   apt_key:
     url: https://download.docker.com/linux/ubuntu/gpg
     state: present
+
+- name: software | docker | add GPG key
+  ansible.builtin.get_url:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    dest: /etc/apt/keyrings/docker.asc
+    mode: '0644'
+    force: true
 
 - name: software | docker | add docker repository to apt
   apt_repository:
