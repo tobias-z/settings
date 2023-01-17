@@ -20,16 +20,16 @@
 
     - import_tasks: tasks/software/packages.yaml
       vars:
-        task_enabled: "{{ the_user }}['software']['packages']"
+        task_enabled: "{{ vars[the_user].software.packages }}"
       when: task_enabled|bool
 
     - import_tasks: tasks/automation/user/user.yaml
       vars:
-        automation_enabled: "{{ the_user }}['automation']['enabled']"
-      when: automation_enabled == True
+        automation_enabled: "{{ vars[the_user].automation.enabled }}"
+      when: automation_enabled|bool
 
     - import_tasks: tasks/automation/rerun_ansible.yaml
       vars:
-        task_enabled: "{{ the_user }}['automation']['monitor-settings']"
-        automation_enabled: "{{ the_user }}['automation']['enabled']"
-      when: task_enabled == True and automation_enabled == True
+        task_enabled: "{{ vars[the_user].automation.monitor-settings }}"
+        automation_enabled: "{{ vars[the_user].automation.enabled }}"
+      when: task_enabled|bool and automation_enabled|bool
