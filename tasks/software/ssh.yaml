@@ -33,12 +33,13 @@
     name: gh
     state: latest
 
+- name: software | ssh | ensure token file
+  copy:
+    dest: /tmp/token.txt
+    content: "{{ github_token }}"
+
 - name: software | ssh | setup github with generated ssh key
-  when: gh_exists is failed
-  environment:
-    GITHUB_TOKEN: "{{ github_token }}"
+#  when: gh_exists is failed
   shell: |
-    echo "$GITHUB_TOKEN" >> /tmp/token.txt
     gh auth login --with-token < /tmp/token.txt
     gh ssh-key add /home/{{ the_user }}/.ssh/id_ed25519.pub
-    rm /tmp/token.txt
