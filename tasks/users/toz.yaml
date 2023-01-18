@@ -1,7 +1,7 @@
 - name: users | toz | create personal config directories
   tags: dotfiles,dotfiles-toz
+  become_user: "{{ the_user }}"
   file:
-    become_user: "{{ the_user }}"
     path: /home/toz/{{ item.dir }}
     state: directory
     mode: 0700
