@@ -23,6 +23,7 @@
     executable: /bin/bash
 
 - name: software | nvm | install node
+  become_user: "{{ the_user }}"
   when: nvm_exists is failed
   args:
     executable: /bin/zsh
@@ -30,6 +31,9 @@
     nvm install 16
 
 - name: software | nvm | ensure npm packages
+  become_user: "{{ the_user }}"
+  args:
+    executable: /bin/zsh
   shell: |
     npm install -g yarn
     npm install -g prettier
