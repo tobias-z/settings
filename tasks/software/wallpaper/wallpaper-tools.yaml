@@ -18,4 +18,4 @@
   become_user: "{{ the_user }}"
   copy:
     src: "{{ playbook_dir }}/tasks/software/wallpaper/wallpapers"
-    dest: "/home/{{ the_user }}/Pictures/wallpapers"
+    dest: "/home/{{ the_user }}/Pictures"

@@ -1,7 +1,7 @@
 - name: software | x11-packages | install x11-packages
   package:
     name:
-      - volumeicon
+      - volumeicon-alsa
       - picom
       - flameshot
       - network-manager
