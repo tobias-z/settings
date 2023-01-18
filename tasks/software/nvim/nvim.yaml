@@ -24,7 +24,7 @@
   when: nvim_exists is failed
   become_user: "{{ the_user }}"
   git:
-    repo: git clone https://github.com/neovim/neovim
+    repo: https://github.com/neovim/neovim
     dest: "/home/{{ the_user }}/dev/projects/neovim"
     clone: yes
     update: yes
