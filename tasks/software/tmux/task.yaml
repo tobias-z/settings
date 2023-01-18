@@ -4,11 +4,10 @@
     state: latest
 
 - name: software | tmux | copy tmux config
+  become_user: "{{ the_user }}"
   copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-    owner: "{{ the_user }}"
-    group: "{{ the_user }}"
   with_items:
     - { src: '{{ playbook_dir }}/tasks/software/tmux/tmux.conf', dest: '/home/{{ the_user }}/.tmux.conf' }
     - { src: '{{ playbook_dir }}/tasks/software/tmux/tmux-cht.sh', dest: '/home/{{ the_user }}/.local/bin' }

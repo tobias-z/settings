@@ -22,6 +22,7 @@
 
 - name: software | nvim | clone nvim
   when: nvim_exists is failed
+  become_user: "{{ the_user }}"
   git:
     repo: git clone https://github.com/neovim/neovim
     dest: "/home/{{ the_user }}/dev/projects/neovim"
@@ -29,6 +30,7 @@
     update: yes
 
 - name: software | nvim | build nvim
+  become_user: "{{ the_user }}"
   when: nvim_exists is failed
   shell: |
     cd /home/{{ the_user }}/dev/projects/neovim
@@ -36,13 +38,13 @@
     sudo make install
     
 - name: software | nvim | copy nvim config
+  become_user: "{{ the_user }}" 
   copy:
     src: "{{ playbook_dir }}/tasks/software/nvim/nvim-config"
     dest: "/home/{{ the_user }}/.config/nvim"
-    owner: "{{ the_user }}"
-    group: "{{ the_user }}"
 
 - name: software | nvim | ensure directories used for neovim
+  become_user: "{{ the_user }}"
   file:
     path: "{{ item.dir }}"
     state: directory
@@ -52,6 +54,7 @@
     - { dir: "/home/{{ the_user }}/.local/share/jdtls/workspaces" }
 
 - name: software | nvim | clone java-debug debugger
+  become_user: "{{ the_user }}"
   git:
     repo: https://github.com/microsoft/java-debug
     dest: "/home/{{ the_user }}/.local/share/debuggers/java-debug"
@@ -78,11 +81,10 @@
     chdir: "/home/{{ the_user }}/.local/share/debuggers/vscode-java-test"
 
 - name: software | nvim | copy nvim config
+  become_user: "{{ the_user }}"
   copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-    owner: "{{ the_user }}"
-    group: "{{ the_user }}"
   with_items:
     - { src: '{{ playbook_dir }}/tasks/software/nvim/ideavimrc', dest: '/home/{{ the_user }}/.ideavimrc' }
     - { src: '{{ playbook_dir }}/tasks/software/nvim/vimrc', dest: '/home/{{ the_user }}/.vimrc' }

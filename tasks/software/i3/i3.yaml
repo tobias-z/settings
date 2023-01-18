@@ -17,19 +17,17 @@
     state: latest
 
 - name: software | i3 | ensure i3 directory
+  become_user: "{{ the_user }}"
   file:
     path: "/home/{{ the_user }}/.config/i3"
     state: directory
-    owner: "{{ the_user }}"
-    group: "{{ the_user }}"
     mode: 0700
 
 - name: software | i3 | copy i3 config
+  become_user: "{{ the_user }}"
   copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-    owner: "{{ the_user }}"
-    group: "{{ the_user }}"
   with_items:
     - { src: '{{ playbook_dir }}/tasks/software/i3/i3-config', dest: '/home/{{ the_user }}/.config/i3/config' }
     - { src: '{{ playbook_dir }}/tasks/software/i3/i3-status-config', dest: '/home/{{ the_user }}/.config/i3status/config' }

@@ -4,11 +4,10 @@
     state: latest
 
 - name: software | git | ensure git files
+  become_user: "{{ the_user }}"
   copy:
     src: "{{ playbook_dir }}/tasks/software/git/{{ item.src }}"
     dest: "{{ item.dest }}"
-    owner: "{{ the_user }}"
-    group: "{{ the_user }}"
   with_items:
     - { src: 'gitconfig', dest: '/home/{{ the_user }}/.gitconfig' }
     - { src: 'gitignore', dest: '/home/{{ the_user }}/.gitignore' }

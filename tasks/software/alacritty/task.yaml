@@ -11,8 +11,7 @@
     state: directory
 
 - name: software | alacritty | copy alacritty config
+  become_user: "{{ the_user }}"
   copy:
     src: "{{ playbook_dir }}/tasks/software/alacritty/alacritty.yaml"
     dest: "/home/{{ the_user }}/.config/alacritty"
-    owner: "{{ the_user }}"
-    group: "{{ the_user }}"

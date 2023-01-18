@@ -1,6 +1,6 @@
 - name: software | fonts | copy fonts
+  become_user: "{{ the_user }}"
   copy:
     src: "{{ playbook_dir }}/tasks/software/fonts/my-fonts"
     dest: "/home/{{ the_user }}/.fonts"
-    owner: "{{ the_user }}"
-    group: "{{ the_user }}"
+      

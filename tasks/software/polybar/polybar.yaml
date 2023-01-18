@@ -4,19 +4,17 @@
     state: latest
 
 - name: software | polybar | ensure polybar directory
+  become_user: "{{ the_user }}"
   file:
     path: "/home/{{ the_user }}/.config/polybar"
     state: directory
-    owner: "{{ the_user }}"
-    group: "{{ the_user }}"
     mode: 0700
 
 - name: software | polybar | copy polybar config
+  become_user: "{{ the_user }}"
   copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-    owner: "{{ the_user }}"
-    group: "{{ the_user }}"
   with_items:
     - { src: '{{ playbook_dir }}/tasks/software/polybar/polybar-config.ini', dest: '/home/{{ the_user }}/polybar/config.ini' }
     - { src: '{{ playbook_dir }}/tasks/software/polybar/launch.sh', dest: '/home/{{ the_user }}/polybar/launch.sh' }

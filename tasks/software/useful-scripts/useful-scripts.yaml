@@ -1,9 +1,8 @@
 - name: software | useful-scripts | copy scripts
+  become_user: "{{ the_user }}"
   copy:
     src: "{{ playbook_dir }}/tasks/software/useful-scripts/{{ item.name }}"
     dest: "/home/{{ the_user }}/.local/bin/{{ item.name }}"
-    owner: "{{ the_user }}"
-    group: "{{ the_user }}"
   with_items:
     - { name: 'dark-chrome' }
     - { name: 'google-java-format' }

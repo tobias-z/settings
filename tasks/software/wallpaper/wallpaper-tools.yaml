@@ -7,20 +7,18 @@
     state: latest
 
 - name: software | wallpaper | copy wall paper tools
+  become_user: "{{ the_user }}"
   copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-    owner: "{{ the_user }}"
-    group: "{{ the_user }}"
   with_items:
     - { src: '{{ playbook_dir }}/tasks/software/wallpaper/set-wallpaper', dest: '/home/{{ the_user }}/.local/bin/set-wallpaper' }
 
 - name: software | wallpaper | copy wall papers
+  become_user: "{{ the_user }}"
   copy:
     src: "{{ playbook_dir }}/tasks/software/wallpaper/wallpapers/{{ item.name }}"
     dest: "/home/{{ the_user }}/Pictures/wallpapers/{{ item.name }}"
-    owner: "{{ the_user }}"
-    group: "{{ the_user }}"
   with_items:
     - { src: 'blank-black.jpg' }
     - { src: 'house.png' }

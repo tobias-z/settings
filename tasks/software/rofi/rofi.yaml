@@ -4,22 +4,20 @@
     state: latest
 
 - name: software | rofi | ensure rofi directories
+  become_user: "{{ the_user }}"
   file:
     path: "/home/{{ the_user }}/{{ item.dir }}"
     state: directory
-    owner: "{{ the_user }}"
-    group: "{{ the_user }}"
     mode: 0700
   with_items:
     - { dir: .config/rofi }
     - { dir: .config/rofi/themes }
 
 - name: software | rofi | copy rofi config
+  become_user: "{{ the_user }}"
   copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-    owner: "{{ the_user }}"
-    group: "{{ the_user }}"
   with_items:
     - { src: '{{ playbook_dir }}/tasks/software/rofi/rofi-config.rasi', dest: '/home/{{ the_user }}/.config/rofi/config.rasi' }
     - { src: '{{ playbook_dir }}/tasks/software/rofi/rofi-launcher.sh', dest: '/home/{{ the_user }}/.local/bin/rofi-launcher.sh' }
