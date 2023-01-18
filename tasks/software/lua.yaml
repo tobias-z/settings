@@ -1,7 +1,7 @@
 - name: software | packages | install lua and luarocks
   package:
     name:
-      - lua
+      - lua5.3
       - luarocks
     state: latest
 
