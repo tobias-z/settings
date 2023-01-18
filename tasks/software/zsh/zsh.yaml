@@ -76,4 +76,4 @@
       export TF_TOKEN="{{ tf_token }}"
       export LINODE_TOKEN="{{ linode_token }}"
       export DIGITAL_OCEAN_TOKEN="{{ digital_ocean_token }}"
-      export GITHUB_TOKEN="{{ github_token }}
+      export GITHUB_TOKEN="{{ github_token }}"
