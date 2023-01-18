@@ -2,6 +2,7 @@
   shell: command -v sdk
   register: sdkman_exists
   ignore_errors: yes
+  become_user: "{{ the_user }}"
 
 - name: software | sdkman | download installer
   when: sdkman_exists is failed
