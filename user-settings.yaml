@@ -81,7 +81,7 @@ toz:
     notes: True
     nvm: True
     packages: True
-    peek: True
+    peek: False
     postman: True
     python: True
     rust: True
