@@ -17,11 +17,5 @@
 - name: software | wallpaper | copy wall papers
   become_user: "{{ the_user }}"
   copy:
-    src: "{{ playbook_dir }}/tasks/software/wallpaper/wallpapers/{{ item.name }}"
-    dest: "/home/{{ the_user }}/Pictures/wallpapers/{{ item.name }}"
-  with_items:
-    - { name: 'blank-black.jpg' }
-    - { name: 'house.png' }
-    - { name: 'nord-mountains.jpg' }
-    - { name: 'park.png' }
-    - { name: 'rustlang.png' }
+    src: "{{ playbook_dir }}/tasks/software/wallpaper/wallpapers"
+    dest: "/home/{{ the_user }}/Pictures/wallpapers"
