@@ -16,12 +16,15 @@
     name: i3
     state: latest
 
-- name: software | i3 | ensure i3 directory
+- name: software | i3 | ensure i3 directories
   become_user: "{{ the_user }}"
   file:
-    path: "/home/{{ the_user }}/.config/i3"
+    path: "/home/{{ the_user }}/.config/{{ item.dir }}"
     state: directory
     mode: 0700
+  with_items:
+    - { dir: "i3" }
+    - { dir: "i3status" }
 
 - name: software | i3 | copy i3 config
   become_user: "{{ the_user }}"
