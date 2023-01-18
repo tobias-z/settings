@@ -1,9 +1,10 @@
-- name: software | alacritty | install alacritty
-  become: true
-  package:
-    name:
-      - alacritty
-    state: latest
+# TODO: compile from source instead
+#- name: software | alacritty | install alacritty
+#  become: true
+#  package:
+#    name:
+#      - alacritty
+#    state: latest
 
 - name: software | alacritty | ensure config directory
   file:
