@@ -12,6 +12,7 @@
     force: 'yes'
 
 - name: software | sdkman | install sdkman
+  become_user: "{{ the_user }}"
   when: sdkman_exists is failed
   shell: /tmp/get.sdkman.io
   args:
@@ -44,15 +45,10 @@
       sdkman_rosetta2_compatible=false
       sdkman_selfupdate_feature=true
 
-- name: software | sdkman | source sdkman
-  when: sdkman_exists is failed
-  shell: source "$HOME/.sdkman/bin/sdkman-init.sh"
-  args:
-    executable: /bin/bash
-
 - name: software | sdkman | install packages
   when: sdkman_exists is failed
   shell: |
+    source "$HOME/.sdkman/bin/sdkman-init.sh"
     sdk install java 17.0.5-tem
     sdk install java 8.0.352-tem
     sdk install java 11.0.17-tem
