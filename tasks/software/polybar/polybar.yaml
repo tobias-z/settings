@@ -16,8 +16,8 @@
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
   with_items:
-    - { src: '{{ playbook_dir }}/tasks/software/polybar/polybar-config.ini', dest: '/home/{{ the_user }}/polybar/config.ini' }
-    - { src: '{{ playbook_dir }}/tasks/software/polybar/launch.sh', dest: '/home/{{ the_user }}/polybar/launch.sh' }
+    - { src: '{{ playbook_dir }}/tasks/software/polybar/polybar-config.ini', dest: '/home/{{ the_user }}/.config/polybar/config.ini' }
+    - { src: '{{ playbook_dir }}/tasks/software/polybar/launch.sh', dest: '/home/{{ the_user }}/polybar/.config/launch.sh' }
 
 - name: software | polybar | make launch script executable
   file:
