@@ -8,10 +8,10 @@
     name: zsh
     state: latest
 
-- name: software | zsh | make default shell zsh
-  user:
-    name: "{{ the_user }}"
-    shell: /bin/zsh
+# - name: software | zsh | make default shell zsh
+#  user:
+#    name: "{{ the_user }}"
+#    shell: /bin/zsh
 
 - name: software | zsh | download oh my zsh installer
   when: not zsh.stat.exists
