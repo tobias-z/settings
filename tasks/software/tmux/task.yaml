@@ -2,6 +2,13 @@
   package:
     name: tmux
     state: latest
+      
+- name: software | tmux | ensure tmux directory
+  tags: dotfiles,dotfiles-toz
+  become_user: "{{ the_user }}"
+  file:
+    path: /home/toz/.config/tmux
+    state: directory
 
 - name: software | tmux | copy tmux config
   become_user: "{{ the_user }}"
@@ -11,5 +18,5 @@
   with_items:
     - { src: '{{ playbook_dir }}/tasks/software/tmux/tmux.conf', dest: '/home/{{ the_user }}/.tmux.conf' }
     - { src: '{{ playbook_dir }}/tasks/software/tmux/tmux-cht.sh', dest: '/home/{{ the_user }}/.local/bin' }
-    - { src: '{{ playbook_dir }}/tasks/software/tmux/tmux-cht-command', dest: '/home/{{ the_user }}/.config/tmux' }
-    - { src: '{{ playbook_dir }}/tasks/software/tmux/tmux-cht-languages', dest: '/home/{{ the_user }}/.config/tmux' }
+    - { src: '{{ playbook_dir }}/tasks/software/tmux/tmux-cht-command', dest: '/home/{{ the_user }}/.config/tmux/tmux-cht-command' }
+    - { src: '{{ playbook_dir }}/tasks/software/tmux/tmux-cht-languages', dest: '/home/{{ the_user }}/.config/tmux/tmux-cht-languages' }

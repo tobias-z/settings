@@ -30,7 +30,6 @@
     update: yes
 
 - name: software | nvim | build nvim
-  become_user: "{{ the_user }}"
   when: nvim_exists is failed
   shell: |
     cd /home/{{ the_user }}/dev/projects/neovim
