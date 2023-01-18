@@ -79,7 +79,7 @@ toz:
     latex: False
     lua: True
     notes: True
-    nvm: True
+    nvm: False
     packages: True
     peek: False
     postman: True
