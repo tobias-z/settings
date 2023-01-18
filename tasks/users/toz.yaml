@@ -1,10 +1,9 @@
 - name: users | toz | create personal config directories
   tags: dotfiles,dotfiles-toz
   file:
+    become_user: "{{ the_user }}"
     path: /home/toz/{{ item.dir }}
     state: directory
-    owner: toz
-    group: toz
     mode: 0700
   with_items:
     - { dir: .config }
