@@ -18,6 +18,15 @@
     executable: /bin/bash
 
 - name: software | sdkman | ensure sdkman config
+  become_user: "{{ the_user }}"
+  file:
+    path: /home/toz/{{ item.dir }}
+    state: directory
+  with_items:
+    - { dir: .sdkman }
+    - { dir: .sdkman/etc }
+
+- name: software | sdkman | ensure sdkman config
   copy:
     dest: "/home/{{ the_user }}/.sdkman/etc/config"
     content: |
