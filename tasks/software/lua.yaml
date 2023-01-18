@@ -3,6 +3,7 @@
     name:
       - lua5.3
       - luarocks
+      - liblua5.3-dev
     state: latest
 
 - name: software | lua | install luacheck

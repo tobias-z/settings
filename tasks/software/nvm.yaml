@@ -1,6 +1,8 @@
 - name: software | nvm | check if nvm exists
   shell: command -v nvm
   register: nvm_exists
+  args:
+    executable: /bin/bash
   ignore_errors: yes
 
 - name: software | nvm | download installer
@@ -11,7 +13,8 @@
     mode: '0755'
     force: 'yes'
 
-- name: software | nvm | install sdkman
+- name: software | nvm | install nvm
+  become_user: "{{ the_user }}"
   when: nvm_exists is failed
   shell: |
     /bin/bash /tmp/nvm_install.sh
@@ -21,6 +24,8 @@
 
 - name: software | nvm | install node
   when: nvm_exists is failed
+  args:
+    executable: /bin/zsh
   shell: |
     nvm install 16
 
