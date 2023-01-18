@@ -85,7 +85,7 @@ toz:
     postman: True
     python: True
     rust: True
-    sdkman: True
+    sdkman: False
     secrets: True
     slack: True
     ssh: True

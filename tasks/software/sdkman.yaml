@@ -47,6 +47,7 @@
       sdkman_selfupdate_feature=true
 
 - name: software | sdkman | install packages
+  become_user: "{{ the_user }}"
   when: sdkman_exists is failed
   shell: |
     source "$HOME/.sdkman/bin/sdkman-init.sh"
