@@ -1,8 +1,3 @@
-- name: software | python | add deadsnakes repository
-  apt_repository:
-    repo: 'ppa:deadsnakes/ppa'
-    codename: trusty
-
 - name: software | python | install python
   package:
     name:

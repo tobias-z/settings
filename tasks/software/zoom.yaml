@@ -1,3 +1,8 @@
+- name: software | zoom | get zoom deb file
+  get_url:
+    url: https://zoom.us/client/5.13.4.711/zoom_amd64.deb
+    dest: /tmp/zoom_amd64.deb
+
 - name: software | zoom | install zoom
   apt:
-    deb: https://zoom.us/client/5.13.4.711/zoom_amd64.deb
+    deb: /tmp/zoom_amd64.deb
