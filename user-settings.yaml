@@ -19,7 +19,7 @@ tobiasz:
     bitwarden: True
     code: True
     discord: True
-    docker: True
+    docker: False
     lazydocker: True
     kubernetes: True
     font_manager: False
