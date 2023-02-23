@@ -3,33 +3,34 @@ local builders = {}
 local search_theme = "dropdown"
 local action_theme = "cursor"
 
-function builders.with_layout(table)
+function builders.with_layout(tbl)
   -- table.borderchars = {
   --     { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
   --     prompt = { "─", "│", " ", "│", "┌", "┐", "│", "│" },
   --     results = { "─", "│", "─", "│", "├", "┤", "┘", "└" },
   --     preview = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
   -- }
-  table.prompt_title = false
-  table.preview_title = false
-  return table
+  tbl.prompt_title = false
+  tbl.preview_title = false
+  return tbl
 end
 
 function builders.search(with_preview)
   local search_no_preview = {
     theme = search_theme,
-    layout_strategy = "vertical",
+    layout_strategy = "horizontal",
     layout_config = {
-      width = 0.4,
-      height = 0.6,
+      width = with_preview and 0.6 or 0.4,
+      height = 0.4,
       preview_cutoff = 10,
-      preview_height = 0.4,
       prompt_position = "top",
       -- mirror = true,
     },
   }
 
-  if not with_preview then
+  if with_preview then
+    search_no_preview.layout_config.preview_width = 0.5
+  else
     search_no_preview.previewer = false
   end
 

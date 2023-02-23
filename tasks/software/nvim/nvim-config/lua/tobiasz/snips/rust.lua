@@ -7,13 +7,12 @@ builder.snip(h.snippet(
     [[
 #[cfg(test)]
 mod test {{
-{}
+    use super::*;
 
     {}
 }}
         ]],
     {
-      h.choice(1, { h.t("\tuse super::*;"), h.t("") }),
       h.i(0),
     }
   )

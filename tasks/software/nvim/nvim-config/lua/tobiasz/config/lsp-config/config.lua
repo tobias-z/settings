@@ -1,11 +1,21 @@
 local M = {}
 
-M.capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+M.capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 M.on_attach = function(client, bufnr)
   local opts = { noremap = true, silent = true, buffer = bufnr }
+
   if client.name == "tsserver" then
     require("tobiasz.config.lsp-config.ts-utils")(client)
+  end
+
+  if client.name == "ltex" then
+    require("ltex_extra").setup({
+      load_langs = { "en-US" }, -- table <string> : languages for witch dictionaries will be loaded
+      init_check = true, -- boolean : whether to load dictionaries on startup
+      path = nil, -- string : path to store dictionaries. Relative path uses current working directory
+      log_level = "none", -- string : "none", "trace", "debug", "info", "warn", "error", "fatal"
+    })
   end
 
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")

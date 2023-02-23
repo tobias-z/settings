@@ -17,7 +17,7 @@ builder.snip(h.snippet(
 func ({} {}) {}({}) {} {{
     {}
 }}
-]],
+]]   ,
     {
       h.i(1),
       h.choice(2, {

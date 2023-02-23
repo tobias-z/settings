@@ -7,10 +7,6 @@ local default_config = {
 local tab_settings = {
   {
     file_types = {
-      "javascript",
-      "javascriptreact",
-      "typescript",
-      "typescriptreact",
       "yml",
       "yaml",
       "tex",

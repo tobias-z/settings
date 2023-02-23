@@ -89,9 +89,16 @@ local servers = {
   },
   texlab = true,
   lemminx = true,
+  ltex = {
+    settings = {
+      ltex = {
+        language = "en-GB",
+      },
+    },
+  },
 }
 
-local buf_format = vim.api.nvim_create_augroup("buf_format", { clear = true })
+-- local buf_format = vim.api.nvim_create_augroup("buf_format", { clear = true })
 
 local default_opts = {
   on_attach = handlers.on_attach,
@@ -99,12 +106,12 @@ local default_opts = {
   flags = {
     debounce_text_changes = 150,
   },
-  vim.api.nvim_create_autocmd("BufWritePre <buffer>", {
-    group = buf_format,
-    callback = function()
-      vim.lsp.buf.format()
-    end,
-  }),
+  -- vim.api.nvim_create_autocmd("BufWritePre <buffer>", {
+  --   group = buf_format,
+  --   callback = function()
+  --     vim.lsp.buf.format()
+  --   end,
+  -- }),
 }
 
 for name, val in pairs(servers) do
