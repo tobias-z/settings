@@ -1,4 +1,3 @@
-local conf = require("telescope.config").values
 local java = require("tobiasz.config.lsp-config.handlers.java-handlers")
 
 local handlers = {}
@@ -96,6 +95,7 @@ function handlers.go_to_references(opts)
       return
     end
 
+    local conf = require("telescope.config").values
     require("telescope.pickers")
         .new(opts, {
           prompt_title = "LSP References",
