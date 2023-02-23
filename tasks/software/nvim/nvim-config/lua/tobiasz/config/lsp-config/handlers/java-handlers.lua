@@ -1,6 +1,5 @@
 local string_util = require("tobiasz.utils.string-util")
 local request_all = require("tobiasz.config.lsp-config.util.request-all")
-local ts_utils = require("nvim-treesitter.ts_utils")
 
 local java = {}
 
@@ -32,6 +31,7 @@ function java.is_field(node_at_cursor)
 end
 
 function java.field_rename(opts)
+  local ts_utils = require("nvim-treesitter.ts_utils")
   local params = vim.lsp.util.make_position_params(0)
   params.context = { includeDeclaration = true }
   request_all({

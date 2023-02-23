@@ -1,8 +1,4 @@
-local pickers = require("telescope.pickers")
-local make_entry = require("telescope.make_entry")
-local finders = require("telescope.finders")
 local conf = require("telescope.config").values
-local builders = require("tobiasz.config.telescope.builders")
 local java = require("tobiasz.config.lsp-config.handlers.java-handlers")
 
 local handlers = {}
@@ -56,7 +52,11 @@ end
 
 function handlers.go_to_references(opts)
   opts = opts or {}
-  opts = vim.tbl_deep_extend("force", opts, require("telescope.themes").get_cursor(builders.cursor_theme()))
+  opts = vim.tbl_deep_extend(
+    "force",
+    opts,
+    require("telescope.themes").get_cursor(require("tobiasz.config.telescope.builders").cursor_theme())
+  )
   local bufnr = vim.api.nvim_get_current_buf()
   local filepath = vim.api.nvim_buf_get_name(bufnr)
   local lnum = vim.api.nvim_win_get_cursor(0)[1]
@@ -96,19 +96,19 @@ function handlers.go_to_references(opts)
       return
     end
 
-    pickers
-      .new(opts, {
-        prompt_title = "LSP References",
-        finder = finders.new_table({
-          results = locations,
-          entry_maker = opts.entry_maker or make_entry.gen_from_quickfix(opts),
-        }),
-        previewer = conf.qflist_previewer(opts),
-        sorter = conf.generic_sorter(opts),
-        push_cursor_on_edit = true,
-        push_tagstack_on_edit = true,
-      })
-      :find()
+    require("telescope.pickers")
+        .new(opts, {
+          prompt_title = "LSP References",
+          finder = require("telescope.finders").new_table({
+            results = locations,
+            entry_maker = opts.entry_maker or require("telescope.make_entry").gen_from_quickfix(opts),
+          }),
+          previewer = conf.qflist_previewer(opts),
+          sorter = conf.generic_sorter(opts),
+          push_cursor_on_edit = true,
+          push_tagstack_on_edit = true,
+        })
+        :find()
   end)
 end
 

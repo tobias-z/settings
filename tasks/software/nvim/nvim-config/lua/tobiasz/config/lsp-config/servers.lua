@@ -1,4 +1,5 @@
-require("nvim-lsp-installer").setup({})
+require("mason").setup({})
+require("mason-lspconfig").setup({})
 local handlers = require("tobiasz.config.lsp-config.config")
 local lspconfig = require("lspconfig")
 local util = lspconfig.util
@@ -16,7 +17,7 @@ local servers = {
   bashls = true,
   pyright = true,
   vimls = true,
-  sumneko_lua = {
+  lua_ls = {
     settings = {
       Lua = {
         runtime = {
