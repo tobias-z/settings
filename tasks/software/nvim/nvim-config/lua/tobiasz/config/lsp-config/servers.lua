@@ -42,7 +42,6 @@ local servers = {
   cssls = true,
   cssmodules_ls = true,
   tsserver = true,
-  eslint = true,
   yamlls = {
     settings = {
       yaml = {

@@ -7,7 +7,8 @@ return {
     null_ls.setup({
       sources = {
         null_ls.builtins.formatting.stylua,
-        null_ls.builtins.formatting.prettier.with({
+        null_ls.builtins.diagnostics.eslint_d,
+        null_ls.builtins.formatting.prettierd.with({
           prefer_local = "node_modules/.bin",
         }),
         null_ls.builtins.formatting.google_java_format.with({
