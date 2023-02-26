@@ -77,7 +77,32 @@ local servers = {
   tailwindcss = {
     root_dir = util.root_pattern("tailwind.config.js", "tailwind.config.ts", "postcss.config.js", "postcss.config.ts"),
   },
-  rust_analyzer = true,
+  rust_analyzer = {
+    settings = {
+      ["rust-analyzer"] = {
+        assist = {
+          importEnforceGranularity = true,
+          importPrefix = "crate",
+        },
+        cargo = {
+          allFeatures = true,
+        },
+        checkOnSave = {
+          -- default: `cargo check`
+          command = "clippy",
+        },
+      },
+      inlayHints = {
+        lifetimeElisionHints = {
+          enable = true,
+          useParameterNames = true,
+        },
+      },
+    },
+    -- standalone file support
+    -- setting it to false may improve startup time
+    standalone = true,
+  },
   gopls = {
     settings = {
       gopls = {

@@ -1,6 +1,10 @@
 return {
   "ThePrimeagen/refactoring.nvim",
-  config = function ()
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+    "nvim-treesitter/nvim-treesitter",
+  },
+  config = function()
     require("refactoring").setup({
       -- prompt for return type
       prompt_func_return_type = {
@@ -22,7 +26,6 @@ return {
     local opts = { expr = false }
 
     VMap.vmap("<leader>rm", [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>]], opts)
-    VMap.vmap("<C-r>", require("telescope").extensions.refactoring.refactors, opts)
     VMap.vmap("<leader>rf", [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function To File')<CR>]], opts)
     VMap.vmap("<leader>rv", [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR>]], opts)
 

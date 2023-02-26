@@ -19,8 +19,11 @@ return {
         { "nvim-lua/plenary.nvim" },
       },
     },
+    "ThePrimeagen/harpoon",
+    "ThePrimeagen/refactoring.nvim",
+    "ThePrimeagen/git-worktree.nvim",
   },
-  config = function ()
+  config = function()
     require("tobiasz.config.telescope")
 
     local with_maker = require("tobiasz.config.telescope.entry-makers").with_entry_maker
@@ -69,6 +72,7 @@ return {
     VMap.nmap("<leader>pe", require("telescope").extensions.emoji.emoji)
     VMap.nmap("<leader>sb", require("telescope").extensions.dap.list_breakpoints)
     VMap.nmap("<leader>sf", require("telescope").extensions.dap.frames)
+    VMap.vmap("<C-r>", require("telescope").extensions.refactoring.refactors, { expr = false })
 
     -- Git worktrees
     VMap.nmap("<leader>.", require("telescope").extensions.git_worktree.git_worktrees)

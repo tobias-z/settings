@@ -10,8 +10,8 @@ local with_preview = builders.search_with_preview()
 
 telescope.setup({
   defaults = {
-    prompt_prefix = "〉",
-    selection_caret = "〉",
+    prompt_prefix = "❯ ",
+    selection_caret = "❯ ",
     entry_prefix = "  ",
     file_sorter = require("telescope.sorters").get_fzy_sorter,
     vimgrep_arguments = {
