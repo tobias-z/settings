@@ -1,6 +1,6 @@
 return {
   "mbbill/undotree",
-  config = function ()
-    VMap.nmap("<leader>u", "<cmd>UndotreeShow | UndotreeFocus<CR>")
+  config = function()
+    VMap.nmap("<leader>u", "<cmd>UndotreeToggle<CR>")
   end,
 }
