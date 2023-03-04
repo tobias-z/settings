@@ -1,6 +1,10 @@
 return {
   "kyazdani42/nvim-tree.lua",
-  config = function ()
+  dependencies = {
+    "antosha417/nvim-lsp-file-operations",
+    "nvim-lua/plenary.nvim",
+  },
+  config = function()
     local lib = require("nvim-tree.lib")
     local view = require("nvim-tree.view")
 
@@ -83,23 +87,28 @@ return {
         },
       },
       view = {
+        side = "left",
         hide_root_folder = false,
         width = 40,
         adaptive_size = true,
         mappings = {
           custom_only = false,
           list = {
-            { key = "l", action = "edit", action_cb = edit_or_open },
+            { key = "l", action = "edit",           action_cb = edit_or_open },
             { key = "L", action = "vsplit_preview", action_cb = vsplit_preview },
-            { key = "H", action = "collapse_all", action_cb = collapse_all },
+            { key = "H", action = "collapse_all",   action_cb = collapse_all },
           },
         },
       },
       actions = {
         open_file = {
-          quit_on_open = false,
+          quit_on_open = true,
         },
       },
+    })
+
+    require("lsp-file-operations").setup({
+      debug = false,
     })
 
     VMap.nmap("<C-b>", ":NvimTreeFindFileToggle<CR>")

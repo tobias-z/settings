@@ -76,7 +76,7 @@ return {
         map({ "n", "v" }, "<leader>ha", ":Gitsigns stage_hunk<CR>")
         map({ "n", "v" }, "<leader>hr", ":Gitsigns reset_hunk<CR>")
         map("n", "<leader>hu", gs.undo_stage_hunk)
-        map("n", "<leader>gi", gs.preview_hunk)
+        map("n", "<leader>hi", gs.preview_hunk)
         map("n", "<leader>hb", function()
           gs.blame_line({ full = true })
         end)

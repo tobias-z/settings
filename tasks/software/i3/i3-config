@@ -10,11 +10,11 @@
 
 smart_gaps on
 smart_borders on
-gaps inner 0
-gaps outer 0
+gaps inner 4
+gaps outer 2
 
 set $bgcolor #212121
-set $activecolor #536886
+set $activecolor #0C6453
 set $inactivecolor #888888
 
 set $mod Mod4
@@ -30,9 +30,41 @@ font pango:JetBrainsMono NF 8
 # GET DEM BORDERS OUT OF HEREc:w
 #
 # Thanks Childz
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border pixel 2
                           # class                 border  backgr. text    indicator child_border
-for_window [class="^.*"] client.focused          #77dd77 #285577 #ffffff #2e9ef4   #285577
+for_window [class="^.*"] client.focused          #77dd77 #0C6453 #ffffff #0C6453   #0C6453
+
+set $transp       #00000000
+
+# NOTE: The secondary rgb color in the lines below is the fallback if
+# i3 fails to get colors from Xresources.
+set_from_resource $colorf  i3wm.foreground #f8f8f2
+set_from_resource $colorb  i3wm.background #181a26
+set_from_resource $color0  i3wm.color0  #282936
+set_from_resource $color8  i3wm.color8  #4d4f68
+set_from_resource $color1  i3wm.color1  #f087bd
+set_from_resource $color9  i3wm.color9  #bd6a95
+set_from_resource $color2  i3wm.color2  #a5fb8f
+set_from_resource $color10 i3wm.color10 #83c771
+set_from_resource $color3  i3wm.color3  #fae3b0
+set_from_resource $color11 i3wm.color11 #c7b58c
+set_from_resource $color4  i3wm.color4  #96cdfb
+set_from_resource $color12 i3wm.color12 #77a2c7
+set_from_resource $color5  i3wm.color5  #9183f7
+set_from_resource $color13 i3wm.color13 #7368c4
+set_from_resource $color6  i3wm.color6  #89dceb
+set_from_resource $color14 i3wm.color14 #6bacb8
+set_from_resource $color7  i3wm.color7  #e9e9f4
+set_from_resource $color15 i3wm.color15 #f7f7fb
+
+# class                 border   backgr.  text     indicator  child_border
+client.focused          #77dd77 #0C6453 #ffffff #0C6453   #0C6453
+client.focused_inactive $transp $transp  $transp  $transp    $transp
+client.unfocused        $transp  $transp  $transp  $transp    $transp
+# client.urgent           $color5  $color1  $color0  $color1    $transp
+# client.background       $transp
+
+floating_modifier $mod
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -41,9 +73,11 @@ for_window [class="^.*"] client.focused          #77dd77 #285577 #ffffff #2e9ef4
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu="dmenu -l 12 -nb '$bgcolor' -sf  '#ffffff' -sb '$activecolor' -nf '$inactivecolor'"
-bindsym $mod+d exec --no-startup-id ~/bin/.local/bin/rofi-launcher.sh
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu="dmenu -i -l 12 -nb '$bgcolor' -sf  '#ffffff' -sb '$activecolor' -nf '$inactivecolor'"
+bindsym $mod+d exec --no-startup-id ~/.local/bin/rofi-launcher.sh
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+
+exec_always ~/.config/i3/i3-autostart.sh
 
 # change focus
 bindsym $mod+h focus left
@@ -69,19 +103,11 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# split in horizontal orientation
-bindsym $mod+z split h
-
-# split in vertical orientation
-bindsym $mod+v split v
-
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
 #change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+w layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -97,6 +123,21 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
+
+set $fm HDMI-1
+set $sm HDMI-2
+
+workspace 1 output $fm
+workspace 2 output $fm
+workspace 3 output $sm
+workspace 4 output $sm
+workspace 5 output $sm
+workspace 6 output $fm
+workspace 7 output $fm
+workspace 8 output $fm
+workspace 9 output $fm
+workspace 10 output $fm
+
 set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
@@ -137,7 +178,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec ~/.local/bin/rofi-logout
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -169,7 +210,7 @@ bindsym $mod+r mode "resize"
 # Colors
 
 #                   border      background      text        idicator
-client.focused          $activecolor $activecolor #ffffff #2e9ef4   $activecolor
+# client.focused          $activecolor $activecolor #ffffff $activecolor   $activecolor
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -189,18 +230,20 @@ exec_always ~/.config/polybar/launch.sh
 
 bindsym $mod+Shift+comma exec "xmodmap ~/.Xmodmap"
 
-bindsym $mod+Shift+Delete exec "shutdown -h now"
-bindsym $mod+Shift+x exec "i3lock"
-
 # audio
-bindsym XF86AudioRaiseVolume exec --no-startup-id ~/bin/.local/bin/set-vol.sh +5%
-bindsym XF86AudioLowerVolume exec --no-startup-id ~/bin/.local/bin/set-vol.sh -5%
-bindsym $mod+Shift+m exec --no-startup-id ~/bin/.local/bin/set-vol.sh mute
-bindsym $mod+Shift+plus exec --no-startup-id ~/bin/.local/bin/set-vol.sh +5%
-bindsym $mod+Shift+minus exec --no-startup-id ~/bin/.local/bin/set-vol.sh -5%
+bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.local/bin/set-vol.sh +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id ~/.local/bin/set-vol.sh -5%
+bindsym $mod+Shift+m exec --no-startup-id ~/.local/bin/set-vol.sh mute
+bindsym $mod+Shift+plus exec --no-startup-id ~/.local/bin/set-vol.sh +5%
+bindsym $mod+Shift+minus exec --no-startup-id ~/.local/bin/set-vol.sh -5%
 
 # Open keybinds
-bindsym $mod+i exec /usr/share/librewolf/librewolf
+bindsym $mod+i exec firefox
+bindsym $mod+p exec rofi-rbw --clipboarder xclip --selector rofi --typer xdotool --clear-after 10 --prompt "" --no-help
+bindsym $mod+o exec ~/.local/bin/rofi-documents
+bindsym $mod+e exec rofi -modi emoji -show emoji
+bindsym $mod+Shift+d exec rofi -show calc -modi calc -no-show-match -no-sort
+bindsym $mod+Shift+v exec CM_LAUNCHER=rofi CM_HISTLENGTH=12 clipmenu
 bindsym $mod+Return exec alacritty
 
 bindsym $mod+Shift+q kill
@@ -209,17 +252,17 @@ assign [class="Code"] $ws1
 assign [class="jetbrains-idea"] $ws1
 assign [class="jetbrains-webstorm"] $ws1
 assign [class="alacritty"] $ws2
-assign [class="librewolf-default"] $ws3
+assign [class="firefox"] $ws3
 assign [class="discord"] $ws4
 assign [class="Slack"] $ws4
 assign [class="Teams"] $ws5
 assign [class="Thunderbird"] $ws5
 
-exec --no-startup-id i3-msg 'workspace 3; exec /usr/share/librewolf/librewolf'
 # exec --no-startup-id i3-msg 'exec slack'
 exec --no-startup-id i3-msg 'exec discord'
 # exec --no-startup-id i3-msg 'exec teams'
-# exec --no-startup-id i3-msg 'exec /usr/bin/thunderbird'
+exec --no-startup-id i3-msg 'workspace 5; exec thunderbird'
+exec --no-startup-id i3-msg 'workspace 3; exec firefox'
 exec --no-startup-id i3-msg 'workspace 2; exec alacritty'
 
 # set system background

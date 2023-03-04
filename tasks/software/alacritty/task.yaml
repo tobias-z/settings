@@ -15,5 +15,5 @@
 - name: software | alacritty | copy alacritty config
   become_user: "{{ the_user }}"
   copy:
-    src: "{{ playbook_dir }}/tasks/software/alacritty/alacritty.yaml"
+    src: "{{ playbook_dir }}/tasks/software/alacritty/alacritty.yml"
     dest: "/home/{{ the_user }}/.config/alacritty"
