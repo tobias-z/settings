@@ -160,6 +160,7 @@ return {
         { name = "nvim_lsp" },
         { name = "luasnip" },
         { name = "dap" },
+        { name = "crates" },
       }, {
         { name = "git" },
         { name = "path" },

@@ -78,30 +78,19 @@ local servers = {
     root_dir = util.root_pattern("tailwind.config.js", "tailwind.config.ts", "postcss.config.js", "postcss.config.ts"),
   },
   rust_analyzer = {
+    cmd = {
+      "rustup",
+      "run",
+      "nightly",
+      "rust-analyzer",
+    },
     settings = {
       ["rust-analyzer"] = {
-        assist = {
-          importEnforceGranularity = true,
-          importPrefix = "crate",
-        },
-        cargo = {
-          allFeatures = true,
-        },
         checkOnSave = {
-          -- default: `cargo check`
           command = "clippy",
         },
       },
-      inlayHints = {
-        lifetimeElisionHints = {
-          enable = true,
-          useParameterNames = true,
-        },
-      },
     },
-    -- standalone file support
-    -- setting it to false may improve startup time
-    standalone = true,
   },
   gopls = {
     settings = {
@@ -128,9 +117,9 @@ local servers = {
 local default_opts = {
   on_attach = handlers.on_attach,
   capabilities = handlers.capabilities,
-  flags = {
-    debounce_text_changes = 150,
-  },
+  -- flags = {
+  --   debounce_text_changes = 150,
+  -- },
   -- vim.api.nvim_create_autocmd("BufWritePre <buffer>", {
   --   group = buf_format,
   --   callback = function()

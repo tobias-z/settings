@@ -3,8 +3,10 @@ return {
   dependencies = { "nvim-lua/plenary.nvim" },
   config = function()
     local null_ls = require("null-ls")
+    local on_attach = require("tobiasz.config.lsp-config.config").on_attach
 
     null_ls.setup({
+      on_attach = on_attach,
       sources = {
         null_ls.builtins.formatting.stylua,
         null_ls.builtins.diagnostics.eslint_d,

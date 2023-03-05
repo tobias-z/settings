@@ -2,6 +2,19 @@ local M = {}
 
 M.capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+local function show_documentation()
+    local filetype = vim.bo.filetype
+    if vim.tbl_contains({ 'vim','help' }, filetype) then
+        vim.cmd('h '..vim.fn.expand('<cword>'))
+    elseif vim.tbl_contains({ 'man' }, filetype) then
+        vim.cmd('Man '..vim.fn.expand('<cword>'))
+    elseif vim.fn.expand('%:t') == 'Cargo.toml' and require('crates').popup_available() then
+        require('crates').show_popup()
+    else
+        vim.lsp.buf.hover()
+    end
+end
+
 M.on_attach = function(client, bufnr)
   local opts = { noremap = true, silent = true, buffer = bufnr }
 
@@ -21,7 +34,7 @@ M.on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
   vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-  vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+  vim.keymap.set("n", "K", show_documentation, opts)
   -- vim.keymap.set("n", "<F2>", require("tobiasz.config.lsp-config.handlers").rename, opts)
   vim.keymap.set("n", "<F2>", require("java_util.lsp").rename, opts)
   vim.keymap.set("n", "<leader>f", "<cmd>lua vim.lsp.buf.format()<CR>", opts)
