@@ -55,6 +55,7 @@ fi
 ZSH_THEME="powerlevel10k/powerlevel10k"
 # https://github.com/zsh-users/zsh-syntax-highlighting/issues/871#issuecomment-1133445535
 # ZVM_INIT_MODE='sourcing'
+ZVM_CURSOR_STYLE_ENABLED=false
 ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
 zvm_after_init_commands+=('[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh')
 
