@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+files="$(find "$HOME" -maxdepth 6 -iname "*.pdf")"
+
+choice=$(printf '%s\n' "${files[@]}" | \
+    cut -d '/' -f4- | \
+    sed -e 's/.pdf//g' | \
+    sort -g | \
+    rofi -dmenu -i "File: " "$@") || exit 1
+
+if [ "$choice" ]; then
+    file=$(printf '%s' "$choice")
+    $(~/.local/bin/default-bin application/pdf) "$HOME/${file}.pdf"
+fi

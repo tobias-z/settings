@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+declare -a options=(
+"Lock screen"
+"Logout"
+"Reboot"
+"Shutdown"
+"Suspend"
+)
+
+choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i)
+
+case $choice in
+    'Logout')
+        i3-msg exit
+        ;;
+    'Lock screen')
+        i3lock
+        ;;
+    'Reboot')
+        systemctl reboot
+        ;;
+    'Shutdown')
+        systemctl poweroff
+        ;;
+    'Suspend')
+        systemctl suspend
+        ;;
+    # It is a common practice to use the wildcard asterisk symbol (*) as a final
+    # pattern to define the default case. This pattern will always match.
+    *)
+        exit 0
+    ;;
+esac

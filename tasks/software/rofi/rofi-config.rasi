@@ -1,1 +1,13 @@
+configuration {
+    display-drun: "Applications:";
+    display-window: "Windows:";
+    drun-display-format: "{icon} {name}";
+    font: "JetbrainsMono NF Medium 10";
+    modi: "window,run,drun";
+    show-icons: true;
+    icon-theme: "Papirus";
+
+    kb-cancel: "Escape,Control+g,Control+bracketleft,Control+c";
+}
+
 @theme "~/.config/rofi/themes/my-theme.rasi"
