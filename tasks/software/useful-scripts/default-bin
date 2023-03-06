@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+DESKTOPFILE=`xdg-mime query default $1`
+
+if [ -z "$DESKTOPFILE" ]; then
+    exit 0
+fi
+
+DESKTOPPATH='~/.local/share/applications/'
+if [ ! -f $DESKTOPPATH$DESKTOPFILE ];
+then
+        DESKTOPPATH='/usr/share/applications/'
+fi
+if [ ! -f $DESKTOPPATH$DESKTOPFILE ];
+then
+        DESKTOPPATH='/usr/local/share/applications/'
+fi
+EXECNAME=`cat $DESKTOPPATH$DESKTOPFILE | grep ^Exec | cut -d '=' -f2 | cut -d ' ' -f 1`
+EXECPATH=`which $EXECNAME`
+echo $EXECPATH
