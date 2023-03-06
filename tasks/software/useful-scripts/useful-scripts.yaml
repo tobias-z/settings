@@ -10,4 +10,8 @@
     - { name: 'set-vol.sh' }
     - { name: 'stress-test' }
     - { name: 'sync-worktree' }
+    - { name: 'say' }
+    - { name: 'say_dk' }
+    - { name: 'rofi-logout' }
+    - { name: 'rofi-documents' }
     - { name: 'util' }
