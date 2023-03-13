@@ -77,21 +77,21 @@ local servers = {
   tailwindcss = {
     root_dir = util.root_pattern("tailwind.config.js", "tailwind.config.ts", "postcss.config.js", "postcss.config.ts"),
   },
-  rust_analyzer = {
-    cmd = {
-      "rustup",
-      "run",
-      "nightly",
-      "rust-analyzer",
-    },
-    settings = {
-      ["rust-analyzer"] = {
-        checkOnSave = {
-          command = "clippy",
-        },
-      },
-    },
-  },
+  -- rust_analyzer = {
+  --   cmd = {
+  --     "rustup",
+  --     "run",
+  --     "nightly",
+  --     "rust-analyzer",
+  --   },
+  --   settings = {
+  --     ["rust-analyzer"] = {
+  --       checkOnSave = {
+  --         command = "clippy",
+  --       },
+  --     },
+  --   },
+  -- },
   gopls = {
     settings = {
       gopls = {
