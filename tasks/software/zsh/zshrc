@@ -1,11 +1,14 @@
 export FZF_DEFAULT_OPS="--extended"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+bindkey '^H' backward-kill-word
+
 # It you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 export DOTFILES="$HOME/.config/nvim"
 export PATH=$PATH:$HOME/.local/share/nvim/lsp_servers/lua-language-server/bin
+export PATH=$PATH:$HOME/.local/share/nvim/mason/bin
 export PATH=$PATH:/usr/lib/go/bin
 export PATH=$PATH:$PATH:$HOME/.local/bin
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
@@ -18,7 +21,7 @@ export GPG_TTY=$(tty)
 export ZSH="$HOME/.oh-my-zsh"
 export PATH=$HOME/dev/scripts/tmux-workspaces/src:$PATH
 export TW_CONFIG="$HOME/.config/tw"
-export TW_PATHS="$HOME/dev/plugins $HOME/dev/projects $HOME/dev/devops $HOME/dev/scripts $HOME/documents $HOME/.config $HOME/dev/school $HOME/dev/school/algorithms $HOME/dev/projects/db-cluster"
+export TW_PATHS="$HOME/dev/plugins $HOME/dev/projects $HOME/dev/devops $HOME/dev/scripts $HOME/documents $HOME/.config $HOME/dev/school $HOME/dev/school/algorithms"
 export TW_MAIN_WINDOW="main"
 export PATH=$HOME/documents/my-notes/bin:$PATH
 # export PATH=$HOME/dev/scripts/containers/bin:$PATH
@@ -57,7 +60,13 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # ZVM_INIT_MODE='sourcing'
 ZVM_CURSOR_STYLE_ENABLED=false
 ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
-zvm_after_init_commands+=('[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh')
+
+function my_init() {
+    greeting
+    [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+}
+
+zvm_after_init_commands+=(my_init)
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -185,6 +194,13 @@ alias pbpaste='xclip -selection clipboard -o'
 alias k='kubectl'
 alias ldocker="lazydocker"
 alias k9s='docker run --rm -it -v "$(pwd)/.kubeconfig":/root/.kube/config quay.io/derailed/k9s'
+alias ls='exa'                                                          # ls
+alias l='exa -lbF --git'                                                # list, size, type, git
+alias ll='exa -lbGF --git'                                             # long list
+alias llm='exa -lbGd --git --sort=modified'                            # long list, modified date sort
+alias la='exa -lbhHigUmuSa --time-style=long-iso --git --color-scale'  # all list
+alias lx='exa -lbhHigUmuSa@ --time-style=long-iso --git --color-scale' # all + extended list
+alias t='todo.sh'
 
 updatenvim() {
     cd ~/dev/projects/neovim
@@ -260,6 +276,8 @@ fpath+=${ZDOTDIR:-~}/.zsh_functions
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+[[ -s /etc/profile.d/autojump.zsh ]] && source /etc/profile.d/autojump.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
