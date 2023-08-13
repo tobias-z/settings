@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+bold=$(tput bold)
+normal=$(tput sgr0)
+
+echo
+echo " ${bold}OS: ${normal}$(uname --machine --operating-system --kernel-release)"
+echo " ${bold}Uptime: ${normal}$(uptime -p)"
+echo " ${bold}Hostname: ${normal}$(hostname)"
+echo
+
+# - list all todos
+# - reverse
+# - remove first 2 lines
+# - insert spaces in front of all lines
+# - prepend the title so that we dont print it if no todos are found
+# - append the new line only if todos were found
+todo.sh ls | tac | sed '1,2d' | tac | sed 's/^/   /' | prepend " ${bold}Todos: ${normal}\n\n" | append "\n"
