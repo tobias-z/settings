@@ -1,5 +1,7 @@
 vim.g.mapleader = " "
 
+vim.loader.enable()
+
 require("tobiasz.globals")
 require("tobiasz.disable-builtin")
 require("tobiasz.options")

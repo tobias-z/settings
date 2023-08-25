@@ -4,10 +4,11 @@ return {
   dependencies = {
     "windwp/nvim-ts-autotag",
     "nvim-treesitter/playground",
-    "windwp/nvim-autopairs",
+    "JoosepAlviste/nvim-ts-context-commentstring",
+    -- "windwp/nvim-autopairs",
   },
-  config = function ()
-    require("nvim-autopairs").setup({})
+  config = function()
+    -- require("nvim-autopairs").setup({})
     require("nvim-treesitter.configs").setup({
       -- A list of parser names, or "all"
       ensure_installed = {
@@ -24,16 +25,16 @@ return {
         "markdown",
         "go",
       },
-
       -- Automatically install missing parsers when entering buffer
       auto_install = true,
-
       -- Install parsers synchronously (only applied to `ensure_installed`)
       sync_install = false,
-
       highlight = {
         enable = true,
         additional_vim_regex_highlighting = false,
+      },
+      context_commentstring = {
+        enable = true,
       },
       indent = {
         enable = true,

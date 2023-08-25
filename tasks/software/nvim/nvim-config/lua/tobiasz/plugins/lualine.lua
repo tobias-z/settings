@@ -1,6 +1,9 @@
 return {
   "nvim-lualine/lualine.nvim",
   config = function ()
+    function metals_status()
+      return vim.g['metals_status']
+    end
     require("lualine").setup({
       options = {
         icons_enabled = true,
@@ -14,7 +17,7 @@ return {
       sections = {
         lualine_a = { "mode" },
         lualine_b = { "branch", "diff", "diagnostics" },
-        lualine_c = { "filename" },
+        lualine_c = { "filename", metals_status },
         lualine_x = { "filetype" },
         lualine_y = {},
         lualine_z = { "location" },

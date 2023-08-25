@@ -31,26 +31,23 @@ return {
       end
     end
 
-    local function vsplit_preview()
-      local action = "vsplit"
-      local node = lib.get_node_at_cursor()
-
-      if node == nil then
-        return
-      end
-
-      if node.link_to and not node.nodes then
-        require("nvim-tree.actions.node.open-file").fn(action, node.link_to)
-      elseif node.nodes ~= nil then
-        lib.expand_or_collapse(node)
-      else
-        require("nvim-tree.actions.node.open-file").fn(action, node.absolute_path)
-      end
-
-      view.focus()
-    end
-
     require("nvim-tree").setup({
+      on_attach = function(bufnr)
+        local api = require("nvim-tree.api")
+
+        local function opts(desc)
+          return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+        end
+
+        -- default mappings
+        api.config.mappings.default_on_attach(bufnr)
+
+        -- custom mappings
+        vim.keymap.set("n", "<C-t>", api.tree.change_root_to_parent, opts("Up"))
+        vim.keymap.set("n", "?", api.tree.toggle_help, opts("Help"))
+        vim.keymap.set("n", "l", edit_or_open, opts("EditOrOpen"))
+        vim.keymap.set("n", "H", collapse_all, opts("CollapseAll"))
+      end,
       diagnostics = {
         enable = true,
         show_on_dirs = true,
@@ -91,14 +88,6 @@ return {
         hide_root_folder = false,
         width = 40,
         adaptive_size = true,
-        mappings = {
-          custom_only = false,
-          list = {
-            { key = "l", action = "edit",           action_cb = edit_or_open },
-            { key = "L", action = "vsplit_preview", action_cb = vsplit_preview },
-            { key = "H", action = "collapse_all",   action_cb = collapse_all },
-          },
-        },
       },
       actions = {
         open_file = {

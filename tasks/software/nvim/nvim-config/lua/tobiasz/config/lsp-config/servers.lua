@@ -50,6 +50,7 @@ local servers = {
         schemas = {
           kubernetes = "/*.k8s.yaml",
           ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+          ["https://json.schemastore.org/github-action.json"] = "/.github/actions/*",
         },
       },
     },
@@ -74,6 +75,7 @@ local servers = {
     },
   },
   dockerls = true,
+  docker_compose_language_service = true,
   tailwindcss = {
     root_dir = util.root_pattern("tailwind.config.js", "tailwind.config.ts", "postcss.config.js", "postcss.config.ts"),
   },
@@ -110,6 +112,7 @@ local servers = {
       },
     },
   },
+  clangd = true,
 }
 
 -- local buf_format = vim.api.nvim_create_augroup("buf_format", { clear = true })

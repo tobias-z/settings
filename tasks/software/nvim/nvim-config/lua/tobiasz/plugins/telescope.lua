@@ -22,6 +22,7 @@ return {
     "ThePrimeagen/harpoon",
     "ThePrimeagen/refactoring.nvim",
     "ThePrimeagen/git-worktree.nvim",
+    "scalameta/nvim-metals",
   },
   config = function()
     require("tobiasz.config.telescope")

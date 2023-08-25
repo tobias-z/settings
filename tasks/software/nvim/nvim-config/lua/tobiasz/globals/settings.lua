@@ -14,6 +14,7 @@ local tab_settings = {
       "markdown",
       "terraform",
       "yaml.ansible",
+      "scala"
     },
     config = {
       tab_size = 2,
