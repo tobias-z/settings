@@ -27,6 +27,7 @@ map <leader>sv :action SurroundWith<CR>
 
 nnoremap <leader>dj :action GotoNextError<CR>
 nnoremap <leader>dk :action GotoPreviousError<CR>
+nnoremap <leader>di :action ShowErrorDescription<CR>
 
 inoremap <C-j> <Action>(PopupMenu-selectNext)
 inoremap <C-k> <Action>(PopupMenu-selectPrev)
@@ -84,7 +85,7 @@ nnoremap <leader>t :action RerunFailedTests<CR>
 
 nnoremap <leader>f :action ChooseRunConfiguration<CR>
 nnoremap <leader>c :action ContextRun<CR>
-nnoremap <leader>d :action ToggleLineBreakpoint<CR>
+nnoremap <leader>da :action ToggleLineBreakpoint<CR>
 
 nnoremap <leader>l :wincmd l<CR>
 nnoremap <leader>h :wincmd h<CR>
