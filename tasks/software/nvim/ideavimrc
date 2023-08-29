@@ -11,6 +11,28 @@ set noerrorbells
 set incsearch
 set highlightedyank
 set ignorecase
+set hlsearch
+set showmode noshowmode
+
+" Refactoring
+map <leader>rn <Action>(RenameElement)
+map <leader>rm <Action>(ExtractMethod)
+map <leader>rv <Action>(IntroduceVariable)
+map <leader>rf <Action>(IntroduceField)
+map <leader>rc <Action>(IntroduceConstant)
+map <leader>rs <Action>(ChangeSignature)
+map <leader>rr <Action>(Refactorings.QuickListPopupAction)
+map <leader>ri :action Inline<CR>
+map <leader>sv :action SurroundWith<CR>
+
+nnoremap <leader>dj :action GotoNextError<CR>
+nnoremap <leader>dk :action GotoPreviousError<CR>
+
+inoremap <C-j> <Action>(PopupMenu-selectNext)
+inoremap <C-k> <Action>(PopupMenu-selectPrev)
+
+nnoremap <leader>gc :action CommentByLineComment<CR>
+vnoremap <leader>gc :action CommentByLineComment<CR><Esc>
 
 imap jk <Esc>
 map <C-h> <C-/>
@@ -21,6 +43,8 @@ map <C-h> <C-/>
 :imap <S-Tab> <Esc> <
 :vmap <S-Tab> <gv
 
+nnoremap <leader>hq :nohlsearch<CR>
+
 nnoremap <leader>z :action ToggleDistractionFreeMode<CR>
 nnoremap gt :action GotoTest<CR>
 nnoremap gi :action GotoImplementation<CR>
@@ -30,19 +54,28 @@ nnoremap gd :action GotoDeclaration<CR>
 map <C-O> :action Back<CR>
 map <C-I> :action Forward<CR>
 
+nmap <leader>1 :action GotoHarpoon1<cr>
+nmap <leader>2 :action GotoHarpoon2<cr>
+nmap <leader>3 :action GotoHarpoon3<cr>
+nmap <leader>4 :action GotoHarpoon4<cr>
+nmap <leader>5 :action GotoHarpoon5<cr>
+
+nmap <leader>e :action ShowHarpoon<cr>
+nmap <leader>a :action AddToHarpoon<cr>
+
 " I think this can be changed to a new harpoon plugin?
-nnoremap <leader>e :action ShowBookmarks<CR>
-nnoremap <leader>1 :action GotoBookmark1<CR>
-nnoremap <leader>a1 :action ToggleBookmark1<CR>
-nnoremap <leader>2 :action GotoBookmark2<CR>
-nnoremap <leader>a2 :action ToggleBookmark2<CR>
-nnoremap <leader>3 :action GotoBookmark3<CR>
-nnoremap <leader>a3 :action ToggleBookmark3<CR>
-nnoremap <leader>4 :action GotoBookmark4<CR>
-nnoremap <leader>a4 :action ToggleBookmark4<CR>
-nnoremap <leader>5 :action GotoBookmark5<CR>
-nnoremap <leader>a5 :action ToggleBookmark5<CR>
-nnoremap <leader>m :action FileStructurePopup<CR>
+" nnoremap <leader>e :action ShowBookmarks<CR>
+" nnoremap <leader>1 :action GotoBookmark1<CR>
+" nnoremap <leader>a1 :action ToggleBookmark1<CR>
+" nnoremap <leader>2 :action GotoBookmark2<CR>
+" nnoremap <leader>a2 :action ToggleBookmark2<CR>
+" nnoremap <leader>3 :action GotoBookmark3<CR>
+" nnoremap <leader>a3 :action ToggleBookmark3<CR>
+" nnoremap <leader>4 :action GotoBookmark4<CR>
+" nnoremap <leader>a4 :action ToggleBookmark4<CR>
+" nnoremap <leader>5 :action GotoBookmark5<CR>
+" nnoremap <leader>a5 :action ToggleBookmark5<CR>
+" nnoremap <leader>m :action FileStructurePopup<CR>
 
 nnoremap <leader>gb :action Git.Branches<CR>
 nnoremap <leader>gd :action Git.CompareWithBranch<CR>
@@ -58,15 +91,29 @@ nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>j :wincmd j<CR>
 
-map <leader>sv :action SurroundWith<CR>
-map <leader>il :action Inline<CR>
+"leader-y and leader-p copy and paste to system clipboard"
+vnoremap <Leader>y "+y
+vnoremap <Leader>d "+d
+nnoremap <Leader>p "+p
+nnoremap <Leader>P "+P
+vnoremap <Leader>p "+p
+vnoremap <Leader>P "+P
+
 nnoremap <leader>l :action NextSplitter<CR>
 
-map <leader>gc :action ActivateCommitToolWindow<CR>
+nnoremap <leader>pf :action GotoFile<CR>
+nnoremap <leader>ps :action FindInPath<CR>
 
 map <leader>td :action ActivateTODOToolWindow<CR>
 
 nmap Y y$
+
+" :nmap <C-J> <Action>(NextParameter)<Action>(NextTemplateVariable)
+" :nmap <C-K> <Action>(PrevParameter)<Action>(PreviousTemplateVariable)
+" :imap <C-J> <Action>(NextParameter)<Action>(NextTemplateVariable)
+" :imap <C-K> <Action>(PrevParameter)<Action>(PreviousTemplateVariable)
+" :vmap <C-J> :move +1<CR>
+" :vmap <C-K> :move -2<CR>
 
 sethandler <S-Tab> a:vim
 sethandler <Tab> a:vim
