@@ -23,6 +23,7 @@ map <leader>rc <Action>(IntroduceConstant)
 map <leader>rs <Action>(ChangeSignature)
 map <leader>rr <Action>(Refactorings.QuickListPopupAction)
 map <leader>ri :action Inline<CR>
+map <leader>rps :action ReplaceInPath<CR>
 map <leader>sv :action SurroundWith<CR>
 
 nnoremap <leader>dj :action GotoNextError<CR>
@@ -109,12 +110,7 @@ map <leader>td :action ActivateTODOToolWindow<CR>
 
 nmap Y y$
 
-" :nmap <C-J> <Action>(NextParameter)<Action>(NextTemplateVariable)
-" :nmap <C-K> <Action>(PrevParameter)<Action>(PreviousTemplateVariable)
-" :imap <C-J> <Action>(NextParameter)<Action>(NextTemplateVariable)
-" :imap <C-K> <Action>(PrevParameter)<Action>(PreviousTemplateVariable)
-" :vmap <C-J> :move +1<CR>
-" :vmap <C-K> :move -2<CR>
+nnoremap <C-N> :action ShowIntentionActions<CR>
 
 sethandler <S-Tab> a:vim
 sethandler <Tab> a:vim
@@ -122,6 +118,7 @@ sethandler <C-H> a:ide
 sethandler <C-I> a:vim
 sethandler <C-J> n-v:vim i:ide
 sethandler <C-K> n-v:vim i:ide
+sethandler <C-N> n:vim v-i:ide
 sethandler <C-L> a:vim
 sethandler <C-F> a:ide
 sethandler <C-O> a:vim
