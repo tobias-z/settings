@@ -29,8 +29,8 @@ nnoremap <leader>dj :action GotoNextError<CR>
 nnoremap <leader>dk :action GotoPreviousError<CR>
 nnoremap <leader>di :action ShowErrorDescription<CR>
 
-inoremap <C-j> <Action>(PopupMenu-selectNext)
-inoremap <C-k> <Action>(PopupMenu-selectPrev)
+vnoremap <C-j> :m '>+1<CR>gv=gv
+vnoremap <C-k> :m '<-2<CR>gv=gv
 
 nnoremap <leader>gc :action CommentByLineComment<CR>
 vnoremap <leader>gc :action CommentByLineComment<CR><Esc>
@@ -120,8 +120,8 @@ sethandler <S-Tab> a:vim
 sethandler <Tab> a:vim
 sethandler <C-H> a:ide
 sethandler <C-I> a:vim
-sethandler <C-J> a:ide
-sethandler <C-K> a:ide
+sethandler <C-J> n-v:vim i:ide
+sethandler <C-K> n-v:vim i:ide
 sethandler <C-L> a:vim
 sethandler <C-F> a:ide
 sethandler <C-O> a:vim
