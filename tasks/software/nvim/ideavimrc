@@ -33,8 +33,8 @@ nnoremap <leader>di :action ShowErrorDescription<CR>
 vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
 
-nnoremap <leader>gc :action CommentByLineComment<CR>
-vnoremap <leader>gc :action CommentByLineComment<CR><Esc>
+nnoremap gcc :action CommentByLineComment<CR>
+vnoremap gc :action CommentByLineComment<CR><Esc>
 
 imap jk <Esc>
 map <C-h> <C-/>
@@ -46,6 +46,8 @@ map <C-h> <C-/>
 :vmap <S-Tab> <gv
 
 nnoremap <leader>hq :nohlsearch<CR>
+
+nnoremap <C-W>q <C-W>c
 
 nnoremap <leader>z :action ToggleDistractionFreeMode<CR>
 nnoremap gt :action GotoTest<CR>
@@ -81,6 +83,8 @@ nmap <leader>a :action AddToHarpoon<cr>
 
 nnoremap <leader>gb :action Git.Branches<CR>
 nnoremap <leader>gd :action Git.CompareWithBranch<CR>
+nnoremap <leader>gp :action Git.Commit.And.Push.Executor<CR>
+nnoremap <leader>gc :action ActivateCommitToolWindow<CR>
 
 nnoremap <leader>t :action RerunFailedTests<CR>
 
@@ -108,9 +112,9 @@ nnoremap <leader>ps :action FindInPath<CR>
 
 map <leader>td :action ActivateTODOToolWindow<CR>
 
-nmap Y y$
-
 nnoremap <C-N> :action ShowIntentionActions<CR>
+
+nmap Y y$
 
 sethandler <S-Tab> a:vim
 sethandler <Tab> a:vim
