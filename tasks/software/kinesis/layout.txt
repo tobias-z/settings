@@ -1,7 +1,5 @@
 [=]>[escape]
 [caps]>[lctrl]
-[lctrl]>[kpshift]
-[kp-lctrl]>[kpshift]
 [up]>[left]
 [obrack]>[up]
 [cbrack]>[right]
@@ -10,6 +8,8 @@
 [numlk]>[intl-\]
 [kp-hyphen]>[obrack]
 [\]>[obrack]
+[lctrl]>[kpshift]
+[kp-lctrl]>[kpshift]
 [delete]>[bspace]
 [bspace]>[space]
 [enter]>[ralt]
@@ -30,3 +30,8 @@
 {kp-lshift}{kpmult}>{speed9}{-kp-lshift}{kp=}{+kp-lshift}
 {kp-hyphen}>{speed9}{-ralt}{=}{+ralt}
 {kpmin}>{speed9}{-ralt}{0}{+ralt}
+{kp-1}>{speed9}{-lalt}{1}{+lalt}
+{kp-2}>{speed9}{-lalt}{2}{+lalt}
+{kp-3}>{speed9}{-lalt}{3}{+lalt}
+{kp-4}>{speed9}{-lalt}{4}{+lalt}
+{kp-5}>{speed9}{-lalt}{5}{+lalt}
