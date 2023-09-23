@@ -1,7 +1,5 @@
 tobiasz:
   automation:
-    enabled: True
-    monitor_settings: True
   software:
     git: True
     alacritty: True
@@ -13,40 +11,40 @@ tobiasz:
     tmux: True
     useful_scripts: True
     wallpaper: True
-    xfiles: True
+    xfiles: False
     zsh: True
     ansible: True
-    bitwarden: True
-    code: True
+    bitwarden: False
+    code: False
     discord: True
     docker: False
     lazydocker: True
-    kubernetes: True
+    kubernetes: False
     font_manager: False
-    fzf: True
-    golang: True
+    fzf: False
+    golang: False
     jetbrains_toolbox: True
-    latex: True
+    latex: False
     lua: True
-    notes: True
+    notes: False
     nvm: True
     packages: True
-    peek: True
+    peek: False
     postman: True
     python: True
     rust: True
     sdkman: True
     secrets: True
-    slack: True
+    slack: False
     ssh: True
-    terraform: True
-    themes: True
+    terraform: False
+    themes: False
     thunderbird: True
     tmux_workspaces: True
-    vagrant: True
-    virtualbox: True
-    x11_packages: True
-    zathura: True
+    vagrant: False
+    virtualbox: False
+    x11_packages: False
+    zathura: False
     zoom: True
 
 toz:
