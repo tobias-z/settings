@@ -56,6 +56,7 @@ local servers = {
     },
   },
   terraformls = true,
+  tflint = true,
   ansiblels = {
     ansible = {
       path = "ansible",

@@ -32,3 +32,6 @@ VMap.tmap("<C-j>", "<cmd>wincmd j<CR>")
 VMap.tmap("<C-k>", "<cmd>wincmd k<CR>")
 VMap.tmap("<C-F11>", "<cmd>ToggleTerm<CR>")
 VMap.map("<C-F11>", "<cmd>ToggleTerm<CR>")
+
+VMap.nmap("<leader>j", "<cmd>cnext<CR>zz")
+VMap.nmap("<leader>k", "<cmd>cprev<CR>zz")

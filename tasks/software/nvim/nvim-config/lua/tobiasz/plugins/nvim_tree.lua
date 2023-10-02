@@ -85,7 +85,6 @@ return {
       },
       view = {
         side = "left",
-        hide_root_folder = false,
         width = 40,
         adaptive_size = true,
       },
