@@ -39,6 +39,32 @@ return {
           return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
         end
 
+        -- mark operation
+        local mark_move_j = function()
+          api.marks.toggle()
+          vim.cmd("norm j")
+        end
+        local mark_move_k = function()
+          api.marks.toggle()
+          vim.cmd("norm k")
+        end
+
+        local mark_remove = function()
+          local marks = api.marks.list()
+          if #marks == 0 then
+            table.insert(marks, api.tree.get_node_under_cursor())
+          end
+          vim.ui.input({ prompt = string.format("Remove/Delete %s files? [y/n] ", #marks) }, function(input)
+            if input == "y" then
+              for _, node in ipairs(marks) do
+                api.fs.remove(node)
+              end
+              api.marks.clear()
+              api.tree.reload()
+            end
+          end)
+        end
+
         -- default mappings
         api.config.mappings.default_on_attach(bufnr)
 
@@ -47,7 +73,26 @@ return {
         vim.keymap.set("n", "?", api.tree.toggle_help, opts("Help"))
         vim.keymap.set("n", "l", edit_or_open, opts("EditOrOpen"))
         vim.keymap.set("n", "H", collapse_all, opts("CollapseAll"))
+
+        vim.keymap.set("n", "J", mark_move_j, opts("Toggle Bookmark Down"))
+        vim.keymap.set("n", "K", mark_move_k, opts("Toggle Bookmark Up"))
+        vim.keymap.del('n', 'd', { buffer = bufnr })
+        vim.keymap.set("n", "dm", mark_remove, opts("Remove File(s)"))
+        vim.keymap.set("n", "dd", function()
+          local file = api.tree.get_node_under_cursor()
+          vim.ui.input({ prompt = string.format("Delete file %s [y/n] ", file.name) }, function(input)
+            if input == "y" then
+              api.fs.remove(file)
+              api.tree.reload()
+            end
+          end)
+        end, opts("Remove File(s)"))
       end,
+      ui = {
+        confirm = {
+          remove = false,
+        },
+      },
       diagnostics = {
         enable = true,
         show_on_dirs = true,
@@ -66,21 +111,26 @@ return {
       renderer = {
         group_empty = true,
         icons = {
-          glyphs = {
-            default = "",
-            symlink = "",
-            bookmark = "",
-            folder = {
-              arrow_closed = "",
-              arrow_open = "",
-              default = " ",
-              open = " ",
-              empty = "  ",
-              empty_open = " ",
-              symlink = " ",
-              symlink_open = " ",
-            },
+          show = {
+            file = false,
+            folder = false,
+            folder_arrow = false,
           },
+          -- glyphs = {
+          --   default = "",
+          --   symlink = "",
+          --   bookmark = "",
+          --   folder = {
+          --     arrow_closed = "",
+          --     arrow_open = "",
+          --     default = " ",
+          --     open = " ",
+          --     empty = "  ",
+          --     empty_open = " ",
+          --     symlink = " ",
+          --     symlink_open = " ",
+          --   },
+          -- },
         },
       },
       view = {
