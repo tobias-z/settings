@@ -79,14 +79,14 @@ return {
         vim.keymap.del('n', 'd', { buffer = bufnr })
         vim.keymap.set("n", "dm", mark_remove, opts("Remove File(s)"))
         vim.keymap.set("n", "dd", function()
-          local file = api.tree.get_node_under_cursor()
-          vim.ui.input({ prompt = string.format("Delete file %s [y/n] ", file.name) }, function(input)
+          local node = api.tree.get_node_under_cursor()
+          vim.ui.input({ prompt = string.format("Remove %s [y/n] ", node.name) }, function(input)
             if input == "y" then
-              api.fs.remove(file)
+              api.fs.remove(node)
               api.tree.reload()
             end
           end)
-        end, opts("Remove File(s)"))
+        end, opts("Remove File"))
       end,
       ui = {
         confirm = {
