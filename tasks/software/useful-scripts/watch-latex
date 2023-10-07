@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+paper=$1
+
+inotifywait -e close_write,moved_to,create -m . includes ../shared ../shared/images |
+    while read -r directory events filename; do
+        allowed=("tex" "jpg" "png")
+        for value in "${allowed[@]}"; do
+            if [[ "$filename" == *".$value" ]]; then
+                make -C .. paper=$paper
+            fi
+        done
+    done
