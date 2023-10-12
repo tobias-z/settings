@@ -44,6 +44,12 @@ return {
         end
       end)
     end)
+    VMap.nmap("<leader>pt", function()
+      require("telescope.builtin").grep_string({ search = "TODO" })
+    end)
+    VMap.nmap("<leader>pq", function()
+      require("telescope.builtin").quickfixhistory()
+    end)
 
     VMap.nmap("<leader>pls", require("telescope.builtin").live_grep)
     VMap.nmap("<leader>pf", with_maker("file", require("telescope.builtin").find_files))

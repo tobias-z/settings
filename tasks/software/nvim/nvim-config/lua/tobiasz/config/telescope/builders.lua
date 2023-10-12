@@ -20,8 +20,8 @@ function builders.search(with_preview)
     theme = search_theme,
     layout_strategy = "horizontal",
     layout_config = {
-      width = with_preview and 0.6 or 0.4,
-      height = 0.4,
+      width = with_preview and 0.8 or 0.4,
+      height = with_preview and 0.5 or 0.4,
       preview_cutoff = 10,
       prompt_position = "top",
       -- mirror = true,

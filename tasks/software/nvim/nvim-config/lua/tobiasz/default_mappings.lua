@@ -35,3 +35,5 @@ VMap.map("<C-F11>", "<cmd>ToggleTerm<CR>")
 
 VMap.nmap("<leader>j", "<cmd>cnext<CR>zz")
 VMap.nmap("<leader>k", "<cmd>cprev<CR>zz")
+
+VMap.nmap("<leader>hq", "<cmd>nohlsearch<CR>")
