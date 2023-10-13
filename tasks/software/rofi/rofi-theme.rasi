@@ -5,13 +5,13 @@
  *******************************************************************************/
 
 * {
-    font:   "JetBrainsMono NF Regular 10";
+    font:   "Iosevka Nerd Font Mono Regular 12";
 
     bg0:     #212121;
     bg1:     #212121;
     fg0:     #888888;
 
-    accent-color:     #0C6453;
+    accent-color:     #536886;
     urgent-color:     #EBCB8B;
 
     background-color:   transparent;
