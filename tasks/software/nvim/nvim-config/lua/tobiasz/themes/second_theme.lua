@@ -67,6 +67,7 @@ Group.new("DiagnosticUnderlineInfo", nil, nil, s.undercurl + s.bold, c.blue:ligh
 
 vim.cmd([[highlight! Normal ctermbg=none guibg=none]])
 vim.cmd([[highlight! LineNr guibg=none guifg=#666a70]])
+vim.cmd([[highlight! Search guibg=peru guifg=wheat]])
 vim.cmd([[highlight! SignColumn guibg=none]])
 vim.cmd([[highlight! CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=#808080]])
 vim.cmd([[highlight! CmpItemAbbrMatch guibg=NONE guifg=#f8fe7a]])
