@@ -110,12 +110,11 @@ local servers = {
     settings = {
       ltex = {
         language = "en-GB",
-        dictionary = {
-          ["en-GB"] = { string.format(":%s/.spelling/en-GB.dictionary.txt", vim.env.HOME) },
-        },
-        completionEnabled = false,
       },
     },
+  },
+  grammarly = {
+    filetypes = {"markdown", "tex"}
   },
   clangd = true,
 }
