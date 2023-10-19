@@ -113,9 +113,9 @@ local servers = {
       },
     },
   },
-  grammarly = {
-    filetypes = {"markdown", "tex"}
-  },
+  -- grammarly = {
+  --   filetypes = {"markdown", "tex"}
+  -- },
   clangd = true,
 }
 
